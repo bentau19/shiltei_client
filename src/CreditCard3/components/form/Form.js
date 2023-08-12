@@ -5,7 +5,7 @@ import { Wrapper, Button, Input, InputWrapper, Label } from './styles';
 
 const cardNumberMask = '9999 9999 9999 9999';
 
-export const Form = ({ setFormData, cardFlipped, setCardFlipped }) => {
+export const Form = ({ setFormData, cardFlipped, setCardFlipped, sendDataForm,handleClose }) => {
     const formik = useFormik({
         initialValues: {
             cardNumber: '',
@@ -37,6 +37,10 @@ export const Form = ({ setFormData, cardFlipped, setCardFlipped }) => {
 
     const flipCard = (isFlipped) => {
         setCardFlipped(isFlipped);
+    };
+    const buttonPressed = () => {
+        sendDataForm();
+        handleClose();
     };
 
     return (
@@ -92,7 +96,7 @@ export const Form = ({ setFormData, cardFlipped, setCardFlipped }) => {
                     placeholder={'###'}
                 />
             </InputWrapper>
-            <Button gridArea="button" type="submit">
+            <Button gridArea="button" type="submit" onClick={buttonPressed}>
                 Submit
             </Button>
         </Wrapper>
