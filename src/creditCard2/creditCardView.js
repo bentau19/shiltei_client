@@ -1,11 +1,15 @@
 import './creditCardStyle.css';
-import './creditCardFunc';
-function App() {
+
+import React from 'react';
+export default class App extends React.Component {
+
+    render() {
   return (
     <div className='main'>
 <>
   <div className="payment-title">
     <h1>Payment Information</h1>
+    
   </div>
   <div className="container preload">
     <div className="creditcard">
@@ -276,7 +280,7 @@ function App() {
     <div className="field-container">
       <label htmlFor="cardnumber">Card Number</label>
       <span id="generatecard">generate random</span>
-      <input id="cardnumber" type="text" pattern="[0-9]*" inputMode="numeric" />
+      <input id="cardnumber" onChange={this.handleInputChange} type="text" pattern="[0-9]*" inputMode="numeric" />
       <svg
         id="ccicon"
         className="ccicon"
@@ -308,11 +312,8 @@ function App() {
     </div>
   </div>
 </>
-
-<script src='creditCardFunc.js'>
-    </script>
     </div>
   );
 }
+}
 
-export default App;
