@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CreditCardView from '../CreditCard3/index';
+import CreditCardView from '../CreditCard/index';
 import Modal from '@mui/material/Modal';
 
 
