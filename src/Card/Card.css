@@ -1,6 +1,7 @@
 div.card{
+    display:inline-block;
     background-color:cadetblue;
-    height: 200px;
+    height: 300px;
     width: 200px;
     text-align: center;
     margin: 50px;

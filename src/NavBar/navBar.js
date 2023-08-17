@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./styles.css";
 import ReactLogo from './shiltei.ico';
-const Navbar = () => {
+import CartModal from "../Modal/CartView/cartInfo";
+
+const Navbar = ({items,setItems}) => {
   const [showNavbar, setShowNavbar] = React.useState(false);
 
   const handleShowNavbar = () => {
@@ -12,6 +14,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="container">
+      <div className="circle">{items.length}</div>
+      <div className="cart">
+          <CartModal items={items} setItems={setItems} />
+        </div>
         <div className="logo">
           <Logo />
         </div>
@@ -82,7 +88,7 @@ const Hamburger = () => (
 );
 
 const Logo = () => (
-  <img src={ReactLogo} alt="React Logo" width={"140"}></img>
+  <img src={ReactLogo}  alt="shiltei" width={"140"}></img>
 );
 
 export default Navbar;
