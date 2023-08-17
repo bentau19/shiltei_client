@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {Home} from './pages/Home/home';
@@ -16,9 +16,6 @@ root.render(
 
 function App(){
   const [items, setItems] = useState(getItems());
-  useEffect(()=>{
-    console.log(items)
-  },[items])
   return (
         <div>
           <BrowserRouter>

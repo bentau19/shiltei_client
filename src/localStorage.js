@@ -14,3 +14,11 @@ export function clearAll({setItems}){
    setItems(newItems)
   localStorage.setItem('items', JSON.stringify(newItems));
 }
+
+export function removeItem({setItems,deletedItem,items}){
+    let newItems =[...items]
+    const index = newItems.indexOf(deletedItem);
+    newItems.splice(index, 1);
+    setItems(newItems)
+    localStorage.setItem('items', JSON.stringify(newItems));
+}
