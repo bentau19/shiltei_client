@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./styles.css";
 import ReactLogo from './shiltei.ico';
 import CartModal from "../Modal/CartView/cartInfo";
+import SearchBar from "./search_bar/search_bar";
 
 const Navbar = ({items,setItems}) => {
   const [showNavbar, setShowNavbar] = React.useState(false);
@@ -23,6 +24,9 @@ const Navbar = ({items,setItems}) => {
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Hamburger />
+        </div>
+        <div>
+          <SearchBar/>
         </div>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
           <ul>
