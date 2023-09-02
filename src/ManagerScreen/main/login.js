@@ -8,9 +8,8 @@ export const ManagerLogin=()=>{
         Axios.post("http://localhost:8000/manager-login", { params: { password: inputRef.current.value } }).then(
             (res) => {
                 if (res.data==="pass"){
-                    navigate(`/managerHome`, {
-                        managerPass: inputRef.current.value,
-                      });
+                    
+                    navigate(`/managerHome`, {state:{managerPass:inputRef.current.value}});
                 }else{
                     console.log("false!")
                 }

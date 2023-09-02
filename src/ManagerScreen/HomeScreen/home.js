@@ -1,15 +1,22 @@
 import { useState,useEffect } from 'react';
 import Axios from 'axios';
 import Card from '../Card/card2';
+import { useLocation } from 'react-router-dom';
 
-export function ManagerHome({managerPass}) {
+export function ManagerHome() {
+  const {state} = useLocation();
+  const { managerPass } = state;
   const [products,setProducts] = useState([]);
   useEffect(() => {
-    Axios.post("http://localhost:8000/get-products", {
-    }).then((res) => {
-        setProducts(res.data);
-    })
+    getData();
     },[]);
+
+    const getData=()=>{
+      Axios.post("http://localhost:8000/get-products", {
+      }).then((res) => {
+          setProducts(res.data);
+      })
+    }
 
 
     return (
@@ -17,11 +24,11 @@ export function ManagerHome({managerPass}) {
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={i}> 
-            <Card key={i} title={product.title} makat={product.makat} price={product.price} tags= {[]} picture={product.picture} highlight={product.highlight} last = {false} />
+            <Card key={i} item = {product} last = {false} />
             </div>
           })
         }
-        <Card title="" makat="" price= "" picture= "" tags= {[]} highlight={false} last = {true} />
+        <Card item={Product(title="",makat="", price="",picture="",tags=[],highlight=false)} last = {true} />
       </div>
     );
   }

@@ -3,75 +3,105 @@ import Dropdown from "./Dropdown";
 import React, { useState } from "react";
 import Axios from 'axios';
 import './Card2.css';
+import { useRef } from 'react';
 const initailOptions = ["wood","metal"];
 
-const Card=({titlei,makati,pricei,picturei,tagsi,highlight,last})=>{
-   const [options, setOptions] = React.useState(initailOptions);
-   
+const Card=({update,titlei,makati,pricei,picturei,tagsi,highlight,last,pass})=>{
+   const [options, setOptions] = React.useState(initailOptions);  
    let cardClass ="card2"
     let buttonValue ="update"
-    const [title, setTitle] = useState(titlei);
-    const [makat, setMakat] = useState(makati);
-    const [price, setPrice] = useState(pricei);
-    const [picture, setPicture] = useState(picturei);
+    const [password] = useState(pass);
+    const titleRef=useRef(null);
+    const makatRef=useRef(null);
+    const priceRef=useRef(null);
+    const pictureRef=useRef(null);
+    const [islast]=useState(last)
+    const [title] = useState(titlei);
+    const [makat] = useState(makati);
+    const [price] = useState(pricei);
+    const [picture] = useState(picturei);
     const [tags, setTags] = useState(tagsi);
     const [checked, setChecked] = useState(highlight);
+    console.log(tags)
     if(last){
       cardClass = "newcard"
       buttonValue="save"
-      console.log("hello")
     }
     let height="500px";
-    
-    const handleChange = val => {
-      highlight=val;
-      setChecked(val)
-    }
+  
 
     const handleSend=()=>{
-      console.log(title)
-      console.log(price)
-      console.log(makat)
-      if(title!==""&&price!==""&&makat!==""){
+      if(titleRef.current.value!==""&&priceRef.current.value!==""&&makatRef.current.value!==""){
+        if(!islast){
+          deleteItem();
+        }
         Axios.post("http://localhost:8000/add-product", {
            params: {
-            title:title,
-            makat:makat,
-            price:price,
-            picture:picture,
+            title:titleRef.current.value,
+            makat:makatRef.current.value,
+            price:priceRef.current.value,
+            picture:pictureRef.current.value,
             highlight:checked,
             tags:tags,
+            pass:password,
             } }).then(
           (res) => {
             console.log(res)
+            update()
           }
         );
+        
       }
+      
     }
+
+    const deleteItem=()=>{
+      Axios.post("http://localhost:8000/delete-product", {
+        params: {
+         title:titleRef.current.value,
+         } }).then(
+       (res) => {
+         console.log(res)
+         update()
+       }
+       
+     );
+   }
+
+   const reset=()=>{
+    titleRef.current.value=""
+    makatRef.current.value=""
+    pictureRef.current.value=""
+    priceRef.current.value=""
+    setChecked(false)
+    setTags([])
+   }
+    
 
     return(
     <div  id="mainDiv" className= {cardClass} style={{height:height}}>
+    {last?<button onClick={reset}>RESET</button>:<button onClick={deleteItem}>X</button>}
     <div className='cont'>
     title: 
-    <input required onChange={(val)=>{setTitle(val.target.value)}} defaultValue={title}/>
+    <input ref={titleRef} defaultValue={title}/>
     </div>
     <div className='cont'>
     picture (link):
-    <input onChange={(val)=>setPicture(val.target.value)} defaultValue={picture}/>
+    <input ref={pictureRef} defaultValue={picture}/>
     </div>
     <div className='cont'>
     price:
-    <input required onChange={(val)=>setPrice(val.target.value)}  type='number' defaultValue={price}/>
+    <input ref={priceRef}  type='number' defaultValue={price}/>
     </div>
     <div className='cont'>
     makat:
-    <input required onChange={(val)=>setMakat(val.target.value)} defaultValue={makat}/>
+    <input ref={makatRef}  defaultValue={makat}/>
     </div>
     <div className='cont'>
     highlight:
     <ReactSwitch
-        checked={highlight}
-        onChange={handleChange}
+        checked={checked}
+        onChange={(val)=>setChecked(val)}
       />
     </div>
     tags:
@@ -82,7 +112,9 @@ const Card=({titlei,makati,pricei,picturei,tagsi,highlight,last})=>{
         options={options}
         onChange={(value) => setTags(value)}
         setOptions= {setOptions}
+        tags = {tags}
       />
+
       <button onClick={handleSend} style={{height:"30px",width:"70px",marginTop:"10px"}}>{buttonValue}</button>
     </div>);
 }
