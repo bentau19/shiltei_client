@@ -1,28 +1,28 @@
 import ReactSwitch from 'react-switch';
 import Dropdown from "./Dropdown";
 import React, { useState } from "react";
-import Axios from 'axios';
 import './Card2.css';
 import { useRef } from 'react';
+import {Product} from '../../productClass'
 const initailOptions = ["wood","metal"];
 
-const Card=({update,titlei,makati,pricei,picturei,tagsi,highlight,last,pass})=>{
+const Card=({product,last,deleteItem,handleSend})=>{
    const [options, setOptions] = React.useState(initailOptions);  
+   console.log(product._id);
    let cardClass ="card2"
     let buttonValue ="update"
-    const [password] = useState(pass);
     const titleRef=useRef(null);
     const makatRef=useRef(null);
     const priceRef=useRef(null);
     const pictureRef=useRef(null);
-    const [islast]=useState(last)
-    const [title] = useState(titlei);
-    const [makat] = useState(makati);
-    const [price] = useState(pricei);
-    const [picture] = useState(picturei);
-    const [tags, setTags] = useState(tagsi);
-    const [checked, setChecked] = useState(highlight);
-    console.log(tags)
+    const [islast] = useState(last)
+    const [title] = useState(product.title);
+    const [makat] = useState(product.makat);
+    const [price] = useState(product.price);
+    const [picture] = useState(product.picture);
+    const [tags, setTags] = useState(product.tags);
+    const [checked, setChecked] = useState(product.highlight);
+        
     if(last){
       cardClass = "newcard"
       buttonValue="save"
@@ -30,43 +30,18 @@ const Card=({update,titlei,makati,pricei,picturei,tagsi,highlight,last,pass})=>{
     let height="500px";
   
 
-    const handleSend=()=>{
-      if(titleRef.current.value!==""&&priceRef.current.value!==""&&makatRef.current.value!==""){
-        if(!islast){
-          deleteItem();
-        }
-        Axios.post("http://localhost:8000/add-product", {
-           params: {
-            title:titleRef.current.value,
-            makat:makatRef.current.value,
-            price:priceRef.current.value,
-            picture:pictureRef.current.value,
-            highlight:checked,
-            tags:tags,
-            pass:password,
-            } }).then(
-          (res) => {
-            console.log(res)
-            update()
-          }
-        );
-        
-      }
-      
+    const createProduct=()=>{
+      const newPro = new Product(
+        titleRef.current.value,
+        makatRef.current.value,
+        pictureRef.current.value,
+        priceRef.current.value,
+        tags,
+        checked
+      );  
+        //console.log(newPro.highlight)
+       return newPro
     }
-
-    const deleteItem=()=>{
-      Axios.post("http://localhost:8000/delete-product", {
-        params: {
-         title:titleRef.current.value,
-         } }).then(
-       (res) => {
-         console.log(res)
-         update()
-       }
-       
-     );
-   }
 
    const reset=()=>{
     titleRef.current.value=""
@@ -76,11 +51,18 @@ const Card=({update,titlei,makati,pricei,picturei,tagsi,highlight,last,pass})=>{
     setChecked(false)
     setTags([])
    }
+
+   const haundleSave=()=>{
+    const newPro = createProduct();
+    handleSend(newPro,islast)
+   }
+
+
     
 
     return(
     <div  id="mainDiv" className= {cardClass} style={{height:height}}>
-    {last?<button onClick={reset}>RESET</button>:<button onClick={deleteItem}>X</button>}
+    {last?<button onClick={reset}>RESET</button>:<button onClick={()=>deleteItem(product._id)}>X</button>}
     <div className='cont'>
     title: 
     <input ref={titleRef} defaultValue={title}/>
@@ -115,7 +97,7 @@ const Card=({update,titlei,makati,pricei,picturei,tagsi,highlight,last,pass})=>{
         tags = {tags}
       />
 
-      <button onClick={handleSend} style={{height:"30px",width:"70px",marginTop:"10px"}}>{buttonValue}</button>
+      <button onClick={haundleSave} style={{height:"30px",width:"70px",marginTop:"10px"}}>{buttonValue}</button>
     </div>);
 }
 export default Card;
