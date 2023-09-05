@@ -8,14 +8,13 @@ const initailOptions = ["wood","metal"];
 
 const Card=({product,last,deleteItem,handleSend})=>{
    const [options, setOptions] = React.useState(initailOptions);  
-   console.log(product._id);
    let cardClass ="card2"
     let buttonValue ="update"
     const titleRef=useRef(null);
     const makatRef=useRef(null);
     const priceRef=useRef(null);
     const pictureRef=useRef(null);
-    const [islast] = useState(last)
+    const [id]=useState(product._id)
     const [title] = useState(product.title);
     const [makat] = useState(product.makat);
     const [price] = useState(product.price);
@@ -31,13 +30,15 @@ const Card=({product,last,deleteItem,handleSend})=>{
   
 
     const createProduct=()=>{
+      
       const newPro = new Product(
         titleRef.current.value,
         makatRef.current.value,
         pictureRef.current.value,
         priceRef.current.value,
         tags,
-        checked
+        checked,
+        id
       );  
         //console.log(newPro.highlight)
        return newPro
@@ -54,7 +55,7 @@ const Card=({product,last,deleteItem,handleSend})=>{
 
    const haundleSave=()=>{
     const newPro = createProduct();
-    handleSend(newPro,islast)
+    handleSend(newPro)
    }
 
 

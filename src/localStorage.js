@@ -1,4 +1,7 @@
 
+export function getServerId(){
+return "https://shiltei-server-khn8.onrender.com"
+} 
 
 export function getItems(){
     if(!localStorage.getItem("items")) return []

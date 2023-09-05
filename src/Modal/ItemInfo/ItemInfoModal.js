@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CreditCardView from '../../CreditCard/index';
 import Modal from '@mui/material/Modal';
-import { clearAll } from '../../localStorage';
+import { clearAll, getServerId } from '../../localStorage';
 import Axios from 'axios';
 
 function ItemInfoModal({sum,items,setItems,handleParentClose}) {
@@ -17,7 +17,7 @@ function ItemInfoModal({sum,items,setItems,handleParentClose}) {
       handleParentClose();};
        
       function sendBuy(ip){
-      Axios.post("http://localhost:8000/add-sell",{ params: { items: items ,
+      Axios.post(getServerId()+"/add-sell",{ params: { items: items ,
       totalPrice:sum,
       ip:ip
         } }).then(

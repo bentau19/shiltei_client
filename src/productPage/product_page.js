@@ -2,13 +2,14 @@ import Axios from 'axios';
 import { useState } from 'react';
 import {React,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import { getServerId } from '../localStorage';
 
 function ItemDetail() {
     const {title} = useParams();
     const [product,setProduct] = useState([]);
 
     useEffect(() => {
-        Axios.post("http://localhost:8000/search-product", { params: { title: title } }).then((res)=>{
+        Axios.post(getServerId()+"/search-product", { params: { title: title } }).then((res)=>{
             // console.log(res.data);
           setProduct(res.data[0]);
       })
