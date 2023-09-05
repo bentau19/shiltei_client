@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Axios from 'axios';
 import React, { useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { getServerId } from "../../localStorage";
 
 function Search_bar() {
   const myRef = useRef(null);
@@ -21,7 +22,7 @@ function Search_bar() {
   const onChangeHandler = () => {
     const title = myRef.current.value;
     if (title !== "") {
-      Axios.post("http://localhost:8000/search-product", { params: { title: title } }).then(
+      Axios.post(getServerId()+"/search-product", { params: { title: title } }).then(
         (res) => {
           setItems(res.data);
           console.log(res.data);
