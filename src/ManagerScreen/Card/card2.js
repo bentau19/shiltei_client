@@ -12,11 +12,13 @@ const Card=({product,last,deleteItem,handleSend})=>{
     let buttonValue ="update"
     const titleRef=useRef(null);
     const makatRef=useRef(null);
+    const sizeRef=useRef(null);
     const priceRef=useRef(null);
     const pictureRef=useRef(null);
     const [id]=useState(product._id)
     const [title] = useState(product.title);
     const [makat] = useState(product.makat);
+    const [size] = useState(product.size);
     const [price] = useState(product.price);
     const [picture] = useState(product.picture);
     const [tags, setTags] = useState(product.tags);
@@ -26,7 +28,7 @@ const Card=({product,last,deleteItem,handleSend})=>{
       cardClass = "newcard"
       buttonValue="save"
     }
-    let height="500px";
+    let height="570px";
   
 
     const createProduct=()=>{
@@ -34,6 +36,7 @@ const Card=({product,last,deleteItem,handleSend})=>{
       const newPro = new Product(
         titleRef.current.value,
         makatRef.current.value,
+        sizeRef.current.value,
         pictureRef.current.value,
         priceRef.current.value,
         tags,
@@ -79,6 +82,10 @@ const Card=({product,last,deleteItem,handleSend})=>{
     <div className='cont'>
     makat:
     <input ref={makatRef}  defaultValue={makat}/>
+    </div>
+    <div className='cont'>
+    size:
+    <input ref={sizeRef}  defaultValue={size}/>
     </div>
     <div className='cont'>
     highlight:
