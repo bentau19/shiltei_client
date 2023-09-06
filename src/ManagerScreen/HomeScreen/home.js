@@ -107,6 +107,7 @@ export function ManagerHome() {
     {params:{
       title:product.title,
       makat:product.makat,
+      size:product.size,
       price:product.price,
       picture:product.picture,
       highlight:product.highlight,
