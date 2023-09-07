@@ -39,7 +39,8 @@ function CartModal({items,setItems}) {
     >
      <div className='main'>
       <h1 onClick={()=>clearAll({setItems})} style={{textDecoration:"underline"}}>list</h1>
-      {items.map((product,i)=>{
+      {Array.isArray(items) &&
+      items.map((product,i)=>{
         total += product.price;
        return <div key={i} style={{width:"100%", display: "flex"}}>
         <div style={{width:"90%"}}>

@@ -2,7 +2,7 @@
 import React from 'react';
 import './Card.css';
 import { addItems } from '../localStorage';
-function card({title,makat,price,picture,highlight,items,setItems}){
+function card({title,makat,price,picture,highlight,setItems,id}){
     let newPro="";
     let height="300px";
     if(highlight){
@@ -10,10 +10,8 @@ function card({title,makat,price,picture,highlight,items,setItems}){
         height="400px"
       }
       function onClickHandle(){
-
         addItems({
-          items : items,
-         newPro : {"title":title,"makat":makat,"price":price,"picture":picture,"highlight":highlight}, 
+         id : id, 
          setItems:setItems,
       });
       }

@@ -22,7 +22,7 @@ function Search_bar() {
   const onChangeHandler = () => {
     const title = myRef.current.value;
     if (title !== "") {
-      Axios.post(getServerId()+"/search-product", { params: { title: title } }).then(
+      Axios.post(getServerId()+"/search-product-byTitle", { params: { title: title } }).then(
         (res) => {
           setItems(res.data);
           console.log(res.data);

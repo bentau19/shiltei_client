@@ -25,7 +25,7 @@ export function Home({items,setItems}) {
         {/* <button onClick={sendMail}></button> */}
         {
           products.map((product,i)=>{
-            return <div style={{display:"inline-block"}} key={i}> <Card items={items} setItems={setItems} key={i} title={product.title} makat={product.makat} price={product.price} picture={product.picture} highlight={product.highlight} /></div>
+            return <div style={{display:"inline-block"}} key={i}> <Card setItems={setItems} key={i} title={product.title} makat={product.makat} price={product.price} picture={product.picture} highlight={product.highlight} id={product._id} /></div>
           })
         }
       </div>
