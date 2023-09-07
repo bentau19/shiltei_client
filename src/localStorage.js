@@ -1,7 +1,7 @@
 
 export function getServerId(){
-// return "https://shiltei-server-khn8.onrender.com"
-return "http://localhost:8000"
+return "https://shiltei-server-khn8.onrender.com"
+// return "http://localhost:8000"
 } 
 
 export function getItems(){
