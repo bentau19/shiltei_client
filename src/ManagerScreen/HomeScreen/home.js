@@ -41,7 +41,8 @@ export function ManagerHome() {
     const loginCheck=()=>{
       Axios.post(getServerId()+"/manager-login", { params: { password: managerPass } }).then(
         (res) => {
-            if (res.data!=="pass"){
+            if (res.data!=="/managerHome"){
+                console.log(res.data)
                 navigate('/managerLogin');
             }
         }

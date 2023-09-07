@@ -20,11 +20,17 @@ export const ManagerLogin=()=>{
     function handleClick() {
         Axios.post(getServerId()+"/manager-login", { params: { password: inputRef.current.value } }).then(
             (res) => {
-                if (res.data==="pass"){
-                    navigate(`/managerHome`, {state:{managerPass:inputRef.current.value}});
-                }else{
+                if (res.data==="wrong"){
                     error_notify("false password!")
                     console.log("false!")
+                    
+                }else{
+                    if(res.status===200){
+                        navigate(res.data, {state:{managerPass:inputRef.current.value}});
+                    }else{
+                        console.log("server Error!")
+                    }
+                    
                 }
             }
           );

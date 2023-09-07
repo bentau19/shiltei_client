@@ -13,9 +13,16 @@ export function Home({items,setItems}) {
 
     },[]);
 
+    // const sendMail=()=>{
+    //   Axios.post(getServerId()+"/send-mail", {
+    //   }).then((res) => {
+    //   })
+    // }
+
 
     return (
       <div className='Row'>
+        {/* <button onClick={sendMail}></button> */}
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={i}> <Card items={items} setItems={setItems} key={i} title={product.title} makat={product.makat} price={product.price} picture={product.picture} highlight={product.highlight} /></div>
