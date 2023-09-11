@@ -52,6 +52,7 @@ const Card=({product,last,deleteItem,handleSend})=>{
     makatRef.current.value=""
     pictureRef.current.value=""
     priceRef.current.value=""
+    sizeRef.current.value="/"
     setChecked(false)
     setTags([])
    }

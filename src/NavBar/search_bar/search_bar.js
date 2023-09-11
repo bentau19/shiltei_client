@@ -24,7 +24,7 @@ function Search_bar() {
     if (title !== "") {
       Axios.post(getServerId()+"/search-product-byTitle", { params: { title: title } }).then(
         (res) => {
-          setItems(res.data);
+          setItems([...res.data].slice(0, 3));
           console.log(res.data);
         }
       );

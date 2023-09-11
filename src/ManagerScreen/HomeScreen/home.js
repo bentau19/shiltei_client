@@ -52,7 +52,10 @@ export function ManagerHome() {
     const getData=()=>{
       Axios.post(getServerId()+"/get-products", {
       }).then((res) => {
-          setProducts(res.data);
+        let d = [...res.data]
+        d.reverse()
+        setProducts(d);
+          
       })
     }
     const deleteItem=(_id)=>{
@@ -92,7 +95,7 @@ export function ManagerHome() {
         (res) => {
           if (res.status===200){
             success_notify("Add Succefull!!");
-            setProducts(products => [...products, product])
+            setProducts(products => [product,...products])
           }else{
             error_notify("internet connection error");
           console.log("Try Again Later!")
@@ -103,6 +106,17 @@ export function ManagerHome() {
       error_notify("please fill the title, price and makat spots");
     }
   }
+
+  const searchCards=(title)=>{
+      Axios.post(getServerId()+"/search-product-byTitle", { params: { title: title } }).then(
+        (res) => {
+          let d = [...res.data]
+          d.reverse()
+          setProducts(d);
+        }
+      );
+  }
+
    const updateCard=(product)=>{
     Axios.post(getServerId()+"/update-product",
     {params:{
@@ -133,7 +147,11 @@ export function ManagerHome() {
   }
 
     return (
+      <div>
+        <h2 style={{textAlign:"center"}} >search:</h2>
+        <input style={{margin:"auto",display:"block"}} onChange={(res)=>searchCards(res.target.value)} />
       <div className='Row'>
+        <Card handleSend = {handleSend} deleteItem = {deleteItem}  product={new Product("","","/","","",[],false,0)} last = {true} /> 
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={product._id}> 
@@ -141,7 +159,6 @@ export function ManagerHome() {
             </div>
           })
         }
-         <Card handleSend = {handleSend} deleteItem = {deleteItem}  product={new Product("",""," / ","","",[],false,0)} last = {true} /> 
          <ToastContainer
           position="bottom-center"
           autoClose={5000}
@@ -166,7 +183,7 @@ draggable
 pauseOnHover
 theme="light"
 />
-      </div>
+      </div></div>
     );
   }
   
