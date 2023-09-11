@@ -20,9 +20,7 @@ root.render(
 function App(){
   const [items, setItems] = useState([]);
   useEffect(() => {
-    getItems().then((res)=>{
-      setItems(res);
-    })
+    setItems(getItems())
     },[]);
 
   
@@ -32,7 +30,7 @@ function App(){
           <BrowserRouter>
           <Navbar items={items} setItems={setItems}/>
           <Routes>
-            <Route exact path="/" element={<Home items={items} setItems={setItems}/>} />
+            <Route exact path="/" element={<Home setItems={setItems}/>} />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/contact" element={<Contact/>} />

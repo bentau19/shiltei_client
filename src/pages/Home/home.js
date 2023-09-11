@@ -3,7 +3,7 @@ import Card from '../../Card/card';
 import Axios from 'axios';
 import { getServerId } from '../../localStorage';
 
-export function Home({items,setItems}) {
+export function Home({setItems}) {
   const [products,setProducts] = useState([]);
   useEffect(() => {
     Axios.post(getServerId()+"/get-products", {

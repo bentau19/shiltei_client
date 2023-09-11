@@ -17,7 +17,7 @@ const Navbar = ({items,setItems}) => {
       <div className="container">
       <div className="circle">{items.length}</div>
       <div className="cart">
-          <CartModal items={items} setItems={setItems} />
+          <CartModal ids={items} setItems={setItems} />
         </div>
         <div className="logo">
           <Logo />

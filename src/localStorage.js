@@ -1,33 +1,34 @@
 import Axios from 'axios';
 export function getServerId(){
-return "https://shiltei-server-khn8.onrender.com"
-// return "http://localhost:8000"
+// return "https://shiltei-server-khn8.onrender.com"
+return "http://localhost:8000"
 } 
 
-export async function getItems() {
+export function getItems() {
     if (!localStorage.getItem("items")) return [];
     const itemsIds = JSON.parse(localStorage.getItem("items"));
-    let items = [];
-    const axiosPromises = itemsIds.map(async (itemId) => {
-      const res = await Axios.post(getServerId() + "/search-product-byId", { id: itemId });
-      items.push(res.data);
-    });
-    await Promise.all(axiosPromises); // Wait for all Axios requests to complete
-    return items;
+    return itemsIds
 }
-export async function addItems({id ,setItems}){
-    let itemsIds =[id]
+
+export async function idToItem(Id) {
+  try {
+    const response = await Axios.post(getServerId() + "/search-product-byId", { id: Id });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product:', error);
+    throw error; // Rethrow the error to handle it further up the call stack if needed.
+  }
+}
+
+export function addItems({id ,setItems}){
+    let itemsIds =[]
     const oldIds = JSON.parse(localStorage.getItem("items"));
     if(oldIds!==null)
     itemsIds=[...oldIds,id]
+  else
+    itemsIds=[id]
     localStorage.setItem('items', JSON.stringify(itemsIds));
-    let items=[];
-    const axiosPromises = itemsIds.map(async (itemId) => {
-      const res = await Axios.post(getServerId() + "/search-product-byId", { id: itemId });
-      items.push(res.data);
-    });
-    await Promise.all(axiosPromises); // Wait for all Axios requests to complete
-    setItems(items)
+    setItems(itemsIds)
        
 }
 export function clearAll({setItems}){
@@ -36,15 +37,9 @@ export function clearAll({setItems}){
   localStorage.setItem('items', JSON.stringify(newItems));
 }
 
-export function removeItem({setItems,deletedItem,items}){
+export function removeItem({setItems,index}){
     const oldIds = JSON.parse(localStorage.getItem("items"));
-    const index = oldIds.indexOf(deletedItem._id);
-    console.log(oldIds);
     oldIds.splice(index, 1);
-    console.log(oldIds);
     localStorage.setItem('items', JSON.stringify(oldIds));
-    getItems().then((res)=>{
-        setItems(res)
-    })
-   
+    setItems(oldIds)
 }

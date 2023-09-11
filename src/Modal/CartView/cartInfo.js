@@ -1,64 +1,76 @@
-import * as React from 'react';
+// CartModal.js
+
+import React, { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
 import basket from './basket.png';
 import './cartInfo.css';
 import ItemInfoModal from '../ItemInfo/ItemInfoModal';
 import { clearAll, removeItem } from '../../localStorage';
+import { ItemLine } from './itemLine';
 
-function CartModal({items,setItems}) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    let total = 0;
-    function onRemove(_id){
+function CartModal({ ids, setItems }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {setchanged(false);setOpen(false)};
+  const [total, setTotal] = useState(0);
+  const [changed, setchanged] = useState(false);
 
-      removeItem({
-        items : items,
-        deletedItem :_id, 
-        setItems:setItems,
+useEffect(()=>{
+  setTotal(0)
+},[open])
+
+  function onRemove(price,i) {
+    setchanged(true)
+    setTotal((prevTotal) => prevTotal - price); // Update total in CartModal
+    removeItem({
+      index: i,
+      setItems: setItems,
     });
-    }
-    function buttonChange(){
-      if(total!==0){
-        return <div>
-          total price - {total} ש"ח 
-      <div disabled className='buttonC'><ItemInfoModal sum={total} items={items} setItems={setItems} handleParentClose={handleClose} /></div>
+  }
+
+  function buttonChange() {
+    if (total !== 0) {
+      return (
+        <div>
+          total price - {total} ש"ח
+          <div disabled className='buttonC'>
+            <ItemInfoModal sum={total} items={ids} setItems={setItems} handleParentClose={handleClose} />
+          </div>
         </div>
-      }
-      else{
-        return <div><h1>The cart is empty</h1></div>
-      }
+      );
+    } else {
+      return <div><h1>The cart is empty</h1></div>;
     }
+  }
 
+  // No need for the addTot and deleteTot functions here
 
-    return<div>
-    <img src={basket}  alt="basket" width={"50"} onClick={handleOpen} ></img>
-    <Modal 
-      open={open}
-      onClose={handleClose}
-    >
-     <div className='main'>
-      <h1 onClick={()=>clearAll({setItems})} style={{textDecoration:"underline"}}>list</h1>
-      {Array.isArray(items) &&
-      items.map((product,i)=>{
-        total += product.price;
-       return <div key={i} style={{width:"100%", display: "flex"}}>
-        <div style={{width:"90%"}}>
-         <h2>{i+1}. product name: {product.title} <br/>
-         makat: {product.makat} <br/>
-         price: {product.price}</h2>
-         <h1>{items.length===(i+1)?"-----":"+"}</h1>
-         </div>
-         <div style={{width:"20%"}}><button onClick={()=>onRemove(product)}  style={{color:"	#8B0000"}} >X</button></div>
-         </div>
-        })
-      }
-      {
-      buttonChange()}
-      </div> 
-
-    </Modal>
+  return (
+    <div>
+      <img src={basket} alt="basket" width={"50"} onClick={handleOpen}></img>
+      <Modal open={open} onClose={handleClose}>
+        <div className='main'>
+          <h1 onClick={() => clearAll({ setItems })} style={{ textDecoration: "underline" }}>list</h1>
+          {Array.isArray(ids) &&
+            ids.map((id, i) => {
+              return (
+                <ItemLine
+                  key={i}
+                  id={id}
+                  i={i}
+                  setTotal={setTotal} // Pass setTotal to ItemLine
+                  onRemove={onRemove}
+                  idsLen={ids.length}
+                  changed={changed}
+                />
+              );
+            })
+          }
+          {buttonChange()}
+        </div>
+      </Modal>
     </div>
+  );
 }
 
 export default CartModal;
