@@ -3,16 +3,18 @@ import { useState } from 'react';
 import {React,useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getServerId } from '../localStorage';
+import { useNavigationContext } from '../NavigationContext';
 
 function ItemDetail() {
     const {title} = useParams();
     const [product,setProduct] = useState([]);
-
+    const { toggleNavigationBar } = useNavigationContext();
     useEffect(() => {
+      toggleNavigationBar("client");
         Axios.post(getServerId()+"/search-product", { params: { title: title } }).then((res)=>{
             // console.log(res.data);
           setProduct(res.data[0]);
-      })
+      })// eslint-disable-next-line
       },[title]);
 
 

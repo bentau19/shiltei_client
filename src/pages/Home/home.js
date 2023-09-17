@@ -2,22 +2,21 @@ import { useState,useEffect } from 'react';
 import Card from '../../Card/card';
 import Axios from 'axios';
 import { getServerId } from '../../localStorage';
+import { useNavigationContext } from '../../NavigationContext';
 
 export function Home({setItems}) {
   const [products,setProducts] = useState([]);
+  const { toggleNavigationBar } = useNavigationContext();
   useEffect(() => {
+    toggleNavigationBar("client");
     Axios.post(getServerId()+"/get-products", {
     }).then((res) => {
         setProducts(res.data);
     })
-
+// eslint-disable-next-line
     },[]);
 
-    // const sendMail=()=>{
-    //   Axios.post(getServerId()+"/send-mail", {
-    //   }).then((res) => {
-    //   })
-    // }
+
 
 
     return (

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from './components/card/Card';
 import { Form } from './components/form/Form';
 
-function CreditCardView({onCloseFunc}) {
+function CreditCardView({onCloseFunc,ship,name,email}) {
     const [formData, setFormData] = useState({});
     const [cardFlipped, setCardFlipped] = useState(false);
     
@@ -12,7 +12,7 @@ function CreditCardView({onCloseFunc}) {
     return (
         <React.Fragment>
             <Card formData={formData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} />
-            <Form setFormData={setFormData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} sendDataForm={sendDataForm} handleClose={onCloseFunc} />
+            <Form setFormData={setFormData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} sendDataForm={sendDataForm} handleClose={()=>onCloseFunc(ship,email,name)} />
         </React.Fragment>
     );
 }

@@ -1,0 +1,19 @@
+.main2{
+    background-color: antiquewhite;
+    margin: auto;
+    width: 800px;
+    height:min 70%;
+    border: 3px solid black;
+    padding-bottom: 20px;
+    margin-top: 4%;
+    text-align: center;
+    position: relative;
+}
+
+div.cont2{
+
+    height: 30px;
+    font-size: 20px;
+    padding:40px;
+    position:left;
+  }

@@ -1,12 +1,12 @@
 import { useState,useEffect } from 'react';
 import Axios from 'axios';
 import Card from '../Card/card2';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {Product} from '../../productClass'
 import { getServerId } from '../../localStorage';
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigationContext } from '../../NavigationContext';
 export function ManagerHome() {
   const navigate = useNavigate();
   const success_notify = (message) =>toast.success(message, {
@@ -29,12 +29,15 @@ export function ManagerHome() {
       progress: undefined,
       theme: "light",
       });
-  const {state} = useLocation();
-  const { managerPass } = state;
+      const {state} = useLocation();
+      const { managerPass } = state;
   const [products,setProducts] = useState([]);
+  const { toggleNavigationBar } = useNavigationContext();
   useEffect(() => {
+    toggleNavigationBar("manager");
     loginCheck();
     getData();
+     // eslint-disable-next-line
     },[]);
 
 
@@ -42,7 +45,6 @@ export function ManagerHome() {
       Axios.post(getServerId()+"/manager-login", { params: { password: managerPass } }).then(
         (res) => {
             if (res.data!=="/managerHome"){
-                console.log(res.data)
                 navigate('/managerLogin');
             }
         }
@@ -171,18 +173,18 @@ export function ManagerHome() {
           pauseOnHover
           theme="light"
 />
-<ToastContainer
-position="bottom-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
+  <ToastContainer
+  position="bottom-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+  />
       </div></div>
     );
   }

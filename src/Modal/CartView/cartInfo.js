@@ -1,4 +1,3 @@
-// CartModal.js
 
 import React, { useEffect, useState } from 'react';
 import Modal from '@mui/material/Modal';
@@ -50,7 +49,7 @@ useEffect(()=>{
       <img src={basket} alt="basket" width={"50"} onClick={handleOpen}></img>
       <Modal open={open} onClose={handleClose}>
         <div className='main'>
-          <h1 onClick={() => clearAll({ setItems })} style={{ textDecoration: "underline" }}>list</h1>
+          <h1 onClick={() => clearAll({ setItems })} style={{ textDecoration: "underline" }}>LIST</h1>
           {Array.isArray(ids) &&
             ids.map((id, i) => {
               return (

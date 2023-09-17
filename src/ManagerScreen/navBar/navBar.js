@@ -1,11 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./styles.css";
-import ReactLogo from './shiltei.ico';
-import CartModal from "../Modal/CartView/cartInfo";
-import SearchBar from "./search_bar/search_bar";
+import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({items,setItems}) => {
+const ManagerNavbar = ({pass}) => {
+  const navigate = useNavigate();
   const [showNavbar, setShowNavbar] = React.useState(false);
 
   const handleShowNavbar = () => {
@@ -15,32 +14,17 @@ const Navbar = ({items,setItems}) => {
   return (
     <nav className="navbar">
       <div className="container">
-      <div className="circle">{items.length}</div>
-      <div className="cart" >
-          <CartModal ids={items} setItems={setItems} />
-        </div>
-        <div className="logo">
-          <Logo />
-        </div>
+
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Hamburger />
         </div>
-        <div>
-          <SearchBar/>
-        </div>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
           <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
+            <li onClick={()=>navigate("/managerHome", {state:{managerPass:pass}})}>
+            <NavLink to="/managerHome">Products Management</NavLink>
             </li>
-            <li>
-              <NavLink to="/projects">Projects</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">About</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact">Contact</NavLink>
+            <li onClick={()=>navigate("/managerSells", {state:{managerPass:pass}})}>
+            <NavLink to="/managerSells" >Sell List</NavLink>
             </li>
           </ul>
         </div>
@@ -91,8 +75,4 @@ const Hamburger = () => (
   </svg>
 );
 
-const Logo = () => (
-  <img src={ReactLogo} style={{paddingLeft:"70px"}} alt="shiltei" width={"140"}></img>
-);
-
-export default Navbar;
+export default ManagerNavbar;
