@@ -1,13 +1,16 @@
 import React from 'react';
 import { useNavigationContext } from './NavigationContext';
-import ClientNavBar from './NavBar/navBar';
+import {NavBar} from './NavBar/designedNavBar';
 import ManagerNavBar from './ManagerScreen/navBar/navBar';
 
-const NavBarSwitcher = ({items,setItems,pass}) => {
+const NavBarSwitcher = ({items,setItems,pass,setMenuOpen,menuOpen}) => {
     
   const { navigationBarType } = useNavigationContext();
 
-  return navigationBarType === 'client' ? <ClientNavBar items={items} setItems={setItems} /> :
+  return navigationBarType === 'client' ? 
+  <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen}  />
+  // <ClientNavBar items={items} setItems={setItems} /> 
+  :
    <ManagerNavBar pass={pass} />;
 };
 

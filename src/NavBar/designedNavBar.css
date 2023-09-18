@@ -1,0 +1,108 @@
+.nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: -2px 0 18px -1px rgba(0,0,0,0.2);
+    z-index: 10;
+    height: 80px;
+    line-height: 40px;
+    padding: 20px 0;
+    background-color: #fff;
+  }
+  .inner-nav-container {
+    height: 100%;
+    overflow: hidden;
+  }
+  .nav-flip {
+    position: absolute;
+    height: 100%;
+    left: 40px;
+    right: 80px;
+    overflow: hidden;
+    border-right: 1px solid #e6e6e6;
+  }
+  .nav-flip .logo {
+    left: calc(50% + 20px);
+  }
+  .nav-flip.top {
+    top: 0;
+    padding-right: 8px;
+  }
+  .nav-flip.top.active {
+    top: -100%;
+  }
+  .nav-flip.bottom {
+    top: 100%;
+  }
+  .nav-flip.bottom.bottom.active {
+    top: 0;
+  }
+  .logo {
+    padding: 0 10px;
+    color: #d1d1d1;
+    font-size: 32px;
+    font-family: 'Comfortaa', Helvetica, sans-serif;
+    cursor: default;
+  }
+  .logo.link {
+    cursor: pointer;
+  }
+  .logo.link:hover {
+    color: #333;
+  }
+  .ui-icon {
+    cursor: pointer;
+  }
+  .ui-icon:hover .button-svg,
+  .ui-icon.active .button-svg {
+    stroke: #333;
+  }
+  .search-button {
+    right: 40px;
+  }
+  .search-bar {
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 0 15px;
+    color: #333;
+    border: 1px solid rgba(255,255,255,0);
+    border-right: 0px;
+  }
+  .search-bar:focus {
+    border: 1px solid #e6e6e6;
+    border-right: 0px;
+    outline: none;
+  }
+  .search-bar::-moz-placeholder {
+    color: #d1d1d1;
+  }
+  .search-bar:-ms-input-placeholder {
+    color: #d1d1d1;
+  }
+  .search-bar::placeholder {
+    color: #d1d1d1;
+  }
+  .icon-split {
+    vertical-align: middle;
+    height: 40px;
+    width: 1px;
+    background-color: #e6e6e6;
+    margin: 0 5px 0 8px;
+  }
+  .button-svg {
+    transition: 0s;
+    vertical-align: middle;
+    height: 35px;
+    stroke: #d1d1d1;
+    stroke-width: 3;
+    stroke-linecap: round;
+    fill: none;
+  }  
+  .nav-bar.shifted {
+    
+    left: 300px;
+  }

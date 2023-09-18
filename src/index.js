@@ -15,6 +15,9 @@ import { NavigationProvider } from './NavigationContext';
 import NavBarSwitcher from './NavBarSwitcher';
 import BottomBarSwitcher from './BottomBarSwitcher';
 import Accaptance from './AcceptancePage/accaptance';
+import App2 from './pages/Home/testHome'
+import App3 from './pages/Home/storeTest';
+import LoadingBall from './loadingBall/loadingBall';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <App/>
@@ -23,6 +26,7 @@ root.render(
 function App(){
   const [items, setItems] = useState([]);
   const [pass,setPass]=useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     setItems(getItems())
     },[]);
@@ -31,11 +35,15 @@ function App(){
 
   return (
         <div>
+            {/* <App2/> */}
               <NavigationProvider>
           <BrowserRouter>
-          <NavBarSwitcher items={items} setItems={setItems} pass={pass} /> 
+          <NavBarSwitcher items={items} setItems={setItems} pass={pass} setMenuOpen={setMenuOpen} menuOpen={menuOpen} /> 
           <Routes>
-            <Route exact path="/" element={<Home setItems={setItems}/>} />
+            <Route exact path="/" element={
+            // <Home setItems={setItems}/>
+            <App3 menuOpen={menuOpen} />
+            } />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/contact" element={<Contact/>} />
