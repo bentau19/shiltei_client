@@ -1,0 +1,16 @@
+.cart {
+    box-sizing: border-box;
+    position:absolute;
+    z-index: 100;
+    top: 80px;
+    right: -300px;
+    bottom: 0;
+    width: 300px;
+    background-color: #e6e6e6;
+    text-align: center;
+    padding: 20px;
+  }
+  .rela-block {
+    display: block;
+    position: relative;
+  }

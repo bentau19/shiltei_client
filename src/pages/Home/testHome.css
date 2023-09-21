@@ -1,5 +1,5 @@
 * {
-    box-sizing: border-box;
+
     transition: 0.3s cubic-bezier(0.6, 0, 0.2, 1);
   }
   .abs-center {
@@ -19,6 +19,7 @@
     transform: translateX(-50%);
   }
   .rela-block {
+    box-sizing: border-box;
     display: block;
     position: relative;
   }
@@ -61,6 +62,7 @@
     background-color: #e6e6e6;
     text-align: center;
     padding: 20px;
+  
   }
   .page-container {
     z-index: 2;
@@ -79,14 +81,23 @@
 
   .gutter-container {
     padding: 0 40px;
-    max-width: 1200px;
+    
+ 
+    /* max-width: 1200px; */
     margin: auto;
   }
+
+  .top-one{
+    overflow-x: hidden;
+    overflow: "hidden";
+  }
+
   .new-section {
     min-height: 500px;
   }
   .page-section {
     padding: 30px 0;
+    
     background-color: #fff;
   }
   .page-section.grey {
@@ -164,7 +175,7 @@
     height: 80px;
     line-height: 40px;
     padding: 20px 0;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .product-item-container {
     display: flex;
@@ -340,3 +351,56 @@
       top: 0;
     }
   }
+  .btn{
+    margin: auto;
+    width: 50%;
+    /* width: 15em; */
+    height: 4em;
+    border-radius: 1em;
+    box-shadow: 0.3em 0.3em 0.6em  #c8d0e7, -0.2em -0.2em 0.5em #FFFFFF;
+    justify-self: center;
+    display: flex;
+    left: 400px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .btn__secondary {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6;
+    color: #9baacf;
+  }
+  .btn__primary {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    background: #6d5dfc;
+    box-shadow:inset .2rem .2rem 1rem  #8abdff, 
+              inset -.2rem -.2rem 1rem #5b0eeb,
+              .3rem .3rem .6rem #c8d0e7, 
+-.2rem -.2rem .5rem  #FFFFFF;
+    color: #E4EBF5;
+  }
+  
+  .btn__primary:hover {
+    color: #FFFFFF 
+  }
+  
+  .btn__primary:active {
+    box-shadow:inset .2rem .2rem 1rem #5b0eeb, 
+    inset -.2rem -.2rem 1rem #8abdff;
+  }
+  
+  .btn__secondary:hover {
+    color: #6d5dfc;
+  }
+  
+  .btn__secondary:active {
+    box-shadow: inset 0.2em 0.2em 0.5em #c8d0e7, inset -0.2em -0.2em 0.5em #FFFFFF;
+  }
+  
+  .btn p {
+    font-size: 1.6em;
+  }
+  

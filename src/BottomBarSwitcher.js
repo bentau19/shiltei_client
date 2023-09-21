@@ -7,7 +7,7 @@ const BottomBarSwitcher = () => {
     
   const { navigationBarType } = useNavigationContext();
 
-  return navigationBarType === 'client' ? <BottomBarClient /> :
+  return navigationBarType === 'client' ? <div/> :
    <BottomBarManager />;
 };
 

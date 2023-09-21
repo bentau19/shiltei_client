@@ -4,6 +4,8 @@ import Axios from 'axios';
 import { getServerId } from '../../localStorage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useNavigationContext } from '../../NavigationContext';
 export const ManagerLogin=({setPass})=>{
     const error_notify=(message)=>toast.error(message, {
         position: "bottom-center",
@@ -17,6 +19,7 @@ export const ManagerLogin=({setPass})=>{
         });
     const inputRef = useRef(null);
     const navigate = useNavigate();
+    const { toggleNavigationBar } = useNavigationContext();
     function handleClick() {
         Axios.post(getServerId()+"/manager-login", { params: { password: inputRef.current.value } }).then(
             (res) => {
@@ -37,11 +40,15 @@ export const ManagerLogin=({setPass})=>{
           );
         console.log(inputRef.current.value);
       }
+      useEffect(()=>{
+        console.log("managar")
+        toggleNavigationBar("manager");
+      },[])
     return <div style={{
         textAlign:"center"
     }}>
-        <h1>Enter Code:</h1>
-        <input ref={inputRef}type="text"/>
+        <h1 >Enter Code:</h1>
+        <input  ref={inputRef}type="text"/>
         <button onClick={handleClick}>Enter</button>
         <ToastContainer
 position="bottom-center"

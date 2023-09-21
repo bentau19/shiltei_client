@@ -16,6 +16,23 @@
 img {
  max-width: 100%;
 }
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: 100%;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 
 
@@ -154,8 +171,8 @@ img {
   }
   
   .book-cell {
-    position: relative;
-    display: flex;
+    /* position: relative;
+    display: flex; */
     padding: 25px;
     width: 40%;
     height: 250px;
@@ -227,6 +244,7 @@ img {
   }
   
   .book-title {
+    text-transform: uppercase;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -243,6 +261,9 @@ img {
   }
   
   .book-content {
+    position: absolute;
+    left:38%;
+    top:25px;
     padding: 0 20px;
     color: #ffffff;
     overflow: hidden;
@@ -256,10 +277,10 @@ img {
     vertical-align: middle;
   }
   
-  h1 {
+  /* h1 {
     font-size: 0.5em;
     margin: 10px;
-  }
+  } */
   
   .rating {
     border: none;

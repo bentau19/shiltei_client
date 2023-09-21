@@ -18,6 +18,7 @@ import Accaptance from './AcceptancePage/accaptance';
 import App2 from './pages/Home/testHome'
 import App3 from './pages/Home/storeTest';
 import LoadingBall from './loadingBall/loadingBall';
+import LoadingPage from './pages/loading/loadingScreen';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <App/>
@@ -27,9 +28,7 @@ function App(){
   const [items, setItems] = useState([]);
   const [pass,setPass]=useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  useEffect(() => {
-    setItems(getItems())
-    },[]);
+  const [loading, setLoading] = useState(false);
 
   
 
@@ -38,11 +37,11 @@ function App(){
             {/* <App2/> */}
               <NavigationProvider>
           <BrowserRouter>
-          <NavBarSwitcher items={items} setItems={setItems} pass={pass} setMenuOpen={setMenuOpen} menuOpen={menuOpen} /> 
+          {loading?<div/>:<NavBarSwitcher items={items} setCart={setItems} pass={pass} setMenuOpen={setMenuOpen} menuOpen={menuOpen} />}  
           <Routes>
             <Route exact path="/" element={
             // <Home setItems={setItems}/>
-            <App3 menuOpen={menuOpen} />
+            <LoadingPage menuOpen={menuOpen} setLoading={setLoading} setCart={setItems} />
             } />
             <Route path="/projects" element={<Projects/>} />
             <Route path="/about" element={<About/>} />
@@ -53,7 +52,6 @@ function App(){
             <Route path="/product/:title" element={<ItemDetail />} />
             <Route path="/accaptance/:id/:tradeNumber" element={<Accaptance />} />
           </Routes>
-          <BottomBarSwitcher/>
           </BrowserRouter>
           </NavigationProvider>
         </div>

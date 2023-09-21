@@ -10,6 +10,21 @@
     padding: 20px 0;
     background-color: #fff;
   }
+  .circle {
+    z-index: 10;
+    position: absolute;
+    top:3px;
+    right: 0;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    padding: 4;
+    background-color:#a4e0eb;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+    font: 14px Arial, sans-serif;
+  }
   .inner-nav-container {
     height: 100%;
     overflow: hidden;

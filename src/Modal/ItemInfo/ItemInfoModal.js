@@ -4,12 +4,12 @@ import { clearAll, getServerId } from '../../localStorage';
 import Axios from 'axios';
 import ShipModel from '../../ShipingModal/shipingScreen';
 
-function ItemInfoModal({sum,items,setItems,handleParentClose}) {
+function ItemInfoModal({sum,items,setItems,handleParentClose,setTotal}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () =>{
       setOpen(false);
-      handleParentClose();};
+      handleParentClose(false);};
       
       const handleSend = (ship,name,email) =>{
         setOpen(false);
@@ -18,7 +18,8 @@ function ItemInfoModal({sum,items,setItems,handleParentClose}) {
         .then(data => {sendBuy(data.ip,ship,name,email)})
         .catch(error => sendBuy("error",ship,name,email))
         clearAll({setItems});
-        handleParentClose();};
+        setTotal(0);
+        handleParentClose(false);};
 
       function sendBuy(ip,ship,name,email){
       Axios.post(getServerId()+"/add-sell",{ params: { items: items ,
@@ -51,7 +52,7 @@ function ItemInfoModal({sum,items,setItems,handleParentClose}) {
           )
     }
     return<div>
-    <button className="button-3" onClick={handleOpen}>BUY</button>
+    <button onClick={handleOpen}>BUY</button>
     <Modal 
       open={open}
       onClose={handleClose}
