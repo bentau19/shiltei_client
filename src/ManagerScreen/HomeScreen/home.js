@@ -33,13 +33,23 @@ export function ManagerHome() {
       const { managerPass } = state;
   const [products,setProducts] = useState([]);
   const { toggleNavigationBar } = useNavigationContext();
+  const [tags,setTags]= useState([])
   useEffect(() => {
-    toggleNavigationBar("manager");
-    loginCheck();
-    getData();
+      toggleNavigationBar("manager");
+      loginCheck();
+      getTags();
+      getData();
      // eslint-disable-next-line
     },[]);
 
+
+    const updateTags =(tags)=>{
+      Axios.post(getServerId()+"/update-tags", { params: { pass: managerPass , tags:tags } }).then(
+        (res) => {
+          console.log(res.data);
+        }
+      );
+    }
 
     const loginCheck=()=>{
       Axios.post(getServerId()+"/manager-login", { params: { password: managerPass } }).then(
@@ -50,7 +60,15 @@ export function ManagerHome() {
         }
       );
     }
-
+    const getTags=()=>{
+      Axios.post(getServerId()+"/get-tags", {
+      }).then((res) => {
+        // let d = [...res.data]
+        // d.reverse()
+        console.log(res.data);
+        setTags(res.data);  
+      })
+    }
     const getData=()=>{
       Axios.post(getServerId()+"/get-products", {
       }).then((res) => {
@@ -153,11 +171,11 @@ export function ManagerHome() {
         <h2 style={{textAlign:"center"}} >search:</h2>
         <input style={{margin:"auto",display:"block"}} onChange={(res)=>searchCards(res.target.value)} />
       <div className='Row'>
-        <Card handleSend = {handleSend} deleteItem = {deleteItem}  product={new Product("","","/","","",[],false,0)} last = {true} /> 
+        <Card updateTags={updateTags} handleSend = {handleSend} deleteItem = {deleteItem} globaltags={tags} product={new Product("","","/","","",[],false,0)} setGlobaltags={setTags} last = {true} /> 
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={product._id}> 
-            <Card handleSend = {updateCard} deleteItem = {deleteItem} key={i} product = {product} last = {false} />
+            <Card updateTags={updateTags} handleSend = {updateCard} deleteItem = {deleteItem} key={i} product = {product} setGlobaltags={setTags} globaltags={tags} last = {false} />
             </div>
           })
         }

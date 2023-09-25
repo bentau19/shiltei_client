@@ -25,7 +25,8 @@ const Dropdown = ({
   isSearchable,
   onChange,
   setOptions,
-  tags
+  tags,
+  updateTags
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(tags);
@@ -108,10 +109,13 @@ const Dropdown = ({
   const inputClick=(value)=>{
     if(value !== ""){
         const newList = options.concat(value);
+        updateTags(newList);
         setOptions(newList);
         onItemClick(value)
     }
   }
+
+
 
   const isSelected = (option) => {
     if (isMulti) {

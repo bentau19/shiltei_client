@@ -1,13 +1,12 @@
 import ReactSwitch from 'react-switch';
 import Dropdown from "./Dropdown";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Card2.css';
 import { useRef } from 'react';
 import {Product} from '../../productClass'
 const initailOptions = ["wood","metal"];
 
-const Card=({product,last,deleteItem,handleSend})=>{
-   const [options, setOptions] = React.useState(initailOptions);  
+const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globaltags})=>{
    let cardClass ="card2"
     let buttonValue ="update"
     const titleRef=useRef(null);
@@ -23,7 +22,6 @@ const Card=({product,last,deleteItem,handleSend})=>{
     const [picture] = useState(product.picture);
     const [tags, setTags] = useState(product.tags);
     const [checked, setChecked] = useState(product.highlight);
-        
     if(last){
       cardClass = "newcard"
       buttonValue="save"
@@ -31,6 +29,8 @@ const Card=({product,last,deleteItem,handleSend})=>{
     let height="570px";
   
 
+    
+    
     const createProduct=()=>{
       
       const newPro = new Product(
@@ -97,13 +97,15 @@ const Card=({product,last,deleteItem,handleSend})=>{
     </div>
     tags:
     <Dropdown
+        
         isSearchable
         isMulti
         placeHolder="Select..."
-        options={options}
+        options={globaltags}
         onChange={(value) => setTags(value)}
-        setOptions= {setOptions}
+        setOptions= {setGlobaltags}
         tags = {tags}
+        updateTags={updateTags}
       />
 
       <button onClick={haundleSave} style={{height:"30px",width:"70px",marginTop:"10px"}}>{buttonValue}</button>

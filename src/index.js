@@ -19,6 +19,7 @@ import App2 from './pages/Home/testHome'
 import App3 from './pages/Home/storeTest';
 import LoadingBall from './loadingBall/loadingBall';
 import LoadingPage from './pages/loading/loadingScreen';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <App/>
@@ -54,6 +55,7 @@ function App(){
           </Routes>
           </BrowserRouter>
           </NavigationProvider>
+          
         </div>
       );
 }

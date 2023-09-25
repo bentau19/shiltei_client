@@ -11,9 +11,15 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
     const [items,setItems] = useState([])
     const [current,setcurrent] = useState(false)
     const { toggleNavigationBar } = useNavigationContext();
+    const [tags,setTags]=useState([])
     useEffect(()=>{
       toggleNavigationBar("client");
         setLoading(true);
+        Axios.post(getServerId()+"/get-tags",{
+        }).then((res)=>{
+          setTags(res.data)
+        }
+        )
         Axios.post(getServerId()+"/get-products", {
         }).then((res) => {
             const data = res.data;
@@ -31,7 +37,7 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
 
 
 
-    return current?<App2  menuOpen={menuOpen} highlights={highlights} items={items} setCart={setCart}/>:
+    return current?<App2 ctags={tags}  menuOpen={menuOpen} highlights={highlights} items={items} setCart={setCart}/>:
     <div className="store-container">
       <img src={ReactLogo} style={{paddingLeft:"70px", margin:"auto",  display: "block",
   }} alt="shiltei" width={"250"}></img>

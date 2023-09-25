@@ -5,7 +5,10 @@ import {HighlightView} from './higlighted'
 import { ProductComp } from './HomeComp/ProductComp';
 import { FullViewComp } from './HomeComp/fullViewComp';
 import { NavLink } from 'react-router-dom';
-const App2=({menuOpen,items,highlights,setCart})=> {
+import ReactLogo from './aboutUs.png';
+import { Icon } from '@iconify/react';
+
+const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
     const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
     const [viewedProduct, setViewedProduct] = useState({});
@@ -27,7 +30,7 @@ const App2=({menuOpen,items,highlights,setCart})=> {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [displayPos, setDisplayPos] = useState(0);
-    const tags = ["All", "tags A", "tags B", "tags C", "tags D", "tags E"];
+    const tags = ["All", ...ctags];
     const [currenttags, setCurrenttags] = useState("All");
   
     useEffect(() => {
@@ -39,9 +42,9 @@ const App2=({menuOpen,items,highlights,setCart})=> {
     }, [filteredProducts]); 
   
     const init = () => {
-      // updateNewItems();
+      updateNewItems();
       updateFilteredProducts();
-      // addDisplayedProducts();
+      addDisplayedProducts();
     };
   
     const updateNewItems = () => {
@@ -145,18 +148,58 @@ const App2=({menuOpen,items,highlights,setCart})=> {
         )}
       </div>
     </div>
+
     <div className="rela-block page-section new-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="left">Something Cool Here</h2>
+          <h2 className="right">עלינו</h2>
+        </div>
+        <img src={ReactLogo} style={{paddingLeft:"auto"}} alt="shiltei" width={"100%"}></img> 
+      </div>
+    </div>
+
+    <div className="rela-block page-section grey product-section">
+      <div className="rela-block gutter-container">
+        <div className="rela-block section-nav">
+          <h2 className="right">מספרים עלינו</h2>
         </div>
         <LoadingBall />
       </div>
     </div>
+
+    <div className="rela-block page-section new-section">
+      <div className="rela-block gutter-container">
+        <div className="rela-block section-nav">
+          <h2 className="right">צור קשר</h2>
+        </div>
+        <div>
+          <a style={{display: "inline-block"}} href="tel:04-6527526">04-6527526</a>
+          <a color='black' href="tel:04-6527526"><Icon style={{display: "inline-block"}} href="tel:04-6527526" width="30" icon="solar:phone-line-duotone" /></a>
+        </div>
+        <div>
+          <a style={{display: "inline-block"}} href="tel:04-6196611">04-6196611</a>
+          <a color='black' href="tel:04-6196611"><Icon style={{}} icon="cil:fax" width="30" /></a>
+        </div>
+        <div>
+          <a style={{display: "inline-block"}} href="tel:054-6343811">054-6343811</a>
+          <a color='black' href="tel:054-6343811"><Icon icon="bi:phone" width="30" /></a>
+        </div>
+        <div>
+          <a style={{display: "inline-block"}} href = "mailto: shlatimafula@gmail.com">shlatimafula@gmail.com</a>
+          <a color='black'href = "mailto: shlatimafula@gmail.com"><Icon icon="simple-icons:gmail" width="30" /></a>
+        </div>
+
+    <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
+				width={"100%"} height="320"></iframe>
+
+        {/* <LoadingBall /> */}
+      </div>
+    </div>
+
     <div className="rela-block footer">
-    <NavLink style={{padding:"10px"}} to="/managerLogin">MANAGEMENT</NavLink>
+    
       <div className="rela-block gutter-container inner-footer-container">
-        <div className="logo">tunes.</div>
+      <NavLink className="logo" style={{padding:"10px"}} to="/managerLogin">MANAGEMENT</NavLink>
       </div>
     </div>
   </div> 
