@@ -32,9 +32,25 @@
     float: left;
   }
   .right {
-    position: relative;
+    position:relative;
     float: right;
+    right: 0px;
+    /* display: flex; */
   }
+  .right-column {
+    display: flex;
+    flex-direction: column-reverse; /* Stack elements vertically and start from the right */
+    align-items: flex-end; /* Align items to the right side */
+    position: sticky;
+    top: 0; /* Adjust this value as needed to control the vertical position */
+    margin-left: 20px; /* Add some margin to separate it from the main content */
+  }
+  
+  .rightChild {
+    display: flex;
+    margin-bottom: 10px; /* Add spacing between elements if desired */
+  }
+  
   body {
     transition: 0s;
     font-family: 'Open Sans', Helvetica, sans-serif;

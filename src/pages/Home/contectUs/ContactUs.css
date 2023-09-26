@@ -1,0 +1,66 @@
+.contact-us-container {
+  width: 300px; /* Adjust the width if needed */
+  margin: 0 auto;
+  padding: 15px 0; /* Equal padding on the top and bottom */
+  padding-left: 20px; /* Padding on the left */
+  padding-right: 33px; /* Padding on the right */
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: none;
+}
+
+
+.contact-us-heading {
+  font-size: 20px; /* Reduce font size */
+  color: #333;
+  margin-bottom: 15px; /* Reduce margin */
+  text-transform: uppercase;
+}
+
+.contact-us-form-group {
+  margin-bottom: 15px;
+}
+
+.contact-us-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 14px; /* Reduce font size */
+}
+
+.contact-us-input[type="text"],
+.contact-us-input[type="email"],
+.contact-us-textarea {
+  width: 100%;
+  padding: 8px; /* Reduce padding */
+  border: none;
+  border-radius: 3px;
+  font-size: 14px; /* Reduce font size */
+  background-color: #f7f7f7;
+}
+
+.contact-us-input[type="text"],
+.contact-us-input[type="email"] {
+  margin-bottom: 8px; /* Reduce margin */
+}
+
+.contact-us-button {
+  display: block;
+  width: 100%;
+  padding: 10px; /* Reduce padding */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

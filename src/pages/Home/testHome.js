@@ -5,8 +5,10 @@ import {HighlightView} from './higlighted'
 import { ProductComp } from './HomeComp/ProductComp';
 import { FullViewComp } from './HomeComp/fullViewComp';
 import { NavLink } from 'react-router-dom';
-import ReactLogo from './aboutUs.png';
+import rightImg from './aboutUsRight.png';
+import leftImg from './aboutUsLeft.png';
 import { Icon } from '@iconify/react';
+import ContactUs from './contectUs/contact';
 
 const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
@@ -32,7 +34,24 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     const [displayPos, setDisplayPos] = useState(0);
     const tags = ["All", ...ctags];
     const [currenttags, setCurrenttags] = useState("All");
+    function getWindowSize() {
+      const {innerWidth, innerHeight} = window;
+      return {innerWidth, innerHeight};
+    }
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+    console.log(windowSize)
+    useEffect(() => {
+      function handleWindowResize() {
+        
+        setWindowSize(getWindowSize());
+      }
   
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleWindowResize);
+      };
+    }, []);
     useEffect(() => {
     setDisplayedProducts([...items])
       init();
@@ -117,7 +136,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
   return <div id="app">
   <div className={`rela-block page-container ${menuOpen ? 'shifted' : ''}`}>
     <div className="rela-block page-section top-section" style={{paddingTop: "10px"}} >
-      <div className="gutter-container top-one"style={{ height:"345px"}}>
+      <div className=" top-one">
         <HighlightView highlights={highlights} viewProduct={viewProduct} />
       </div>
     </div>
@@ -154,10 +173,10 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         <div className="rela-block section-nav">
           <h2 className="right">עלינו</h2>
         </div>
-        <img src={ReactLogo} style={{paddingLeft:"auto"}} alt="shiltei" width={"100%"}></img> 
+        <img src={rightImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img> 
+        <img src={leftImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img>
       </div>
     </div>
-
     <div className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
@@ -172,26 +191,32 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         <div className="rela-block section-nav">
           <h2 className="right">צור קשר</h2>
         </div>
-        <div>
+        <ContactUs />
+        {/* <div className='right'> */}
+        <div class="right-column">
+          
+        <div className='rightChild'>
           <a style={{display: "inline-block"}} href="tel:04-6527526">04-6527526</a>
           <a color='black' href="tel:04-6527526"><Icon style={{display: "inline-block"}} href="tel:04-6527526" width="30" icon="solar:phone-line-duotone" /></a>
         </div>
-        <div>
+        <div className='rightChild'>
           <a style={{display: "inline-block"}} href="tel:04-6196611">04-6196611</a>
           <a color='black' href="tel:04-6196611"><Icon style={{}} icon="cil:fax" width="30" /></a>
         </div>
-        <div>
-          <a style={{display: "inline-block"}} href="tel:054-6343811">054-6343811</a>
+        <div className='rightChild' >
+          <a  href="tel:054-6343811">054-6343811</a>
           <a color='black' href="tel:054-6343811"><Icon icon="bi:phone" width="30" /></a>
         </div>
-        <div>
-          <a style={{display: "inline-block"}} href = "mailto: shlatimafula@gmail.com">shlatimafula@gmail.com</a>
+        <div className='rightChild'>
+          <a  href = "mailto: shlatimafula@gmail.com">shlatimafula@gmail.com</a>
           <a color='black'href = "mailto: shlatimafula@gmail.com"><Icon icon="simple-icons:gmail" width="30" /></a>
         </div>
-
+        <h2>?יש לך שאלה</h2>
+        {/* </div> */}
+        </div>
     <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
 				width={"100%"} height="320"></iframe>
-
+        
         {/* <LoadingBall /> */}
       </div>
     </div>

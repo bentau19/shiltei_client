@@ -8,18 +8,19 @@ import "./highlighted.css";
 
 // import required modules
 import { Pagination, Navigation,Autoplay } from "swiper/modules";
+import { useEffect, useRef, useState } from 'react';
 
 const colors = ["#fbadaf","#a4e0eb","#edb9d6","#fdca95","#cbb5e2"]
 
 export const CardView =({product,viewProduct})=>{
-    return <div  >
+    return <div style={{width:"120%"}}>
         <div className="book-img" onClick={()=>viewProduct(product)} style={{display:"inline"}}>
             <img
 
             src={product.picture}
             alt=""
             className="book-photo"
-            style={{ overflow: "visible",zIndex:"1000",marginLeft:"25px",marginTop:"25px", width:"33%" }}
+            style={{ aspectRatio: "160/240", overflow: "visible",zIndex:"1000",marginLeft:"25px",marginTop:"25px", width:"172px" }}
           />
     </div>
     <div className="book-content" style={{display:"inline"}}>
@@ -58,9 +59,29 @@ export const CardView =({product,viewProduct})=>{
 
 
 export const HighlightView=({highlights,viewProduct})=>{
+  function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth, innerHeight};
+  }
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  useEffect(() => {
+    function handleWindowResize() {
+      
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+
+    
     return (
         <>
-        <div className="book-slide" style={{ left:"100px", maxWidth:"67%",}}>
+        <div className="book-slide" style={{ height:"50vh" , maxWidth:"67%",}}>
           <Swiper 
         autoplay={{
           delay: 5000,
@@ -68,9 +89,9 @@ export const HighlightView=({highlights,viewProduct})=>{
           pauseOnMouseEnter:true,
         }}
 
-            slidesPerView={3}
+            slidesPerView={windowSize.innerWidth/400 |0}
             spaceBetween={1}
-            style={{ overflow: "visible"}}
+            // style={{ overflow: "visible"}}
             pagination={{
               clickable: true
             }}
