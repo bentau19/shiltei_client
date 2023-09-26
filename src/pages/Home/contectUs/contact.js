@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './ContactUs.css'; // Import your CSS file for styling
+import Axios from 'axios';
+import { getServerId } from '../../../localStorage';
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -19,6 +21,8 @@ function ContactUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    Axios.post(getServerId() + "/send-feedback", { name:formData.name,email:formData.email
+      ,subject:formData.subject,content:formData.content});
     // You can handle form submission logic here, e.g., sending data to a server
     console.log('Form Data:', formData);
   };
