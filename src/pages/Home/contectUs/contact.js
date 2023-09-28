@@ -62,7 +62,6 @@ function ContactUs() {
 
   return (
     <div style={{marginBottom:"20px", marginTop:"-20px",width:"60%",float: "left"}} className="contact-us-container">
-      <button onClick={()=>success_notify("Thank you for contact us!!")}>try</button>
       <form onSubmit={handleSubmit}>
         <div className="contact-us-form-group">
          

@@ -115,6 +115,33 @@
     padding: 30px 0;
     background-color: #fff;
   }
+  .search-bar1 {
+/* padding: 15px; */
+    padding-left:30px ;
+     /* position:static;  */
+  }
+  
+  .search-bar1 input {
+    height: "30px";
+    width: 60%; 
+    /* sdisplay: block; */
+    background-color: transparent;
+     border: none; 
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 10px 0 40px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 15px 50%;
+    color: #3d4954;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .search-bar1 input::placeholder {
+    /* color: #ccd0d2; */
+  }
   
   .page-section.grey {
     background-image: url('./nave_muzar.png'); 

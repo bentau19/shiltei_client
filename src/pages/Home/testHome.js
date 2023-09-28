@@ -149,6 +149,9 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
               <div key={c} className={`rela-inline category ${currenttags === c ? 'active' : ''}`} onClick={() => { setCurrenttags(c); updateFilteredProducts(); }}>{c}</div>
             ))}
           </div>
+          <div className="search-bar1">
+          <input type="text" placeholder="Search Book" />
+        </div>
         </div>
         <div className="rela-block product-item-container">
           {displayedProducts.map((item, index) => (
