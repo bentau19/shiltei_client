@@ -1,12 +1,11 @@
 import ReactSwitch from 'react-switch';
 import Dropdown from "./Dropdown";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import './Card2.css';
 import { useRef } from 'react';
 import {Product} from '../../productClass'
-const initailOptions = ["wood","metal"];
 
-const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globaltags})=>{
+const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globaltags,key})=>{
    let cardClass ="card2"
     let buttonValue ="update"
     const titleRef=useRef(null);
@@ -66,7 +65,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
     
 
     return(
-    <div  id="mainDiv" className= {cardClass} style={{height:height}}>
+    <div key={key}  id="mainDiv" className= {cardClass} style={{height:height}}>
     {last?<button onClick={reset}>RESET</button>:<button onClick={()=>deleteItem(product._id)}>X</button>}
     <div className='cont'>
     title: 

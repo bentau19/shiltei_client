@@ -9,10 +9,12 @@ import rightImg from './aboutUsRight.png';
 import leftImg from './aboutUsLeft.png';
 import { Icon } from '@iconify/react';
 import ContactUs from './contectUs/contact';
+import { getProducts } from '../../serverReq';
 
 const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
     const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
+    const [isEnd, setIsEnd] = useState(false);
     const [viewedProduct, setViewedProduct] = useState({});
     const [newItems, setNewItems] = useState([]);
     const [newItemPos, setNewItemPos] = useState(0);
@@ -29,6 +31,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         },
       // Rest of your products
     ]);
+
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [displayedProducts, setDisplayedProducts] = useState([]);
     const [displayPos, setDisplayPos] = useState(0);
@@ -53,80 +56,101 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
       };
     }, []);
     useEffect(() => {
-    setDisplayedProducts([...items])
+    // setDisplayedProducts([...items])
       init();
     }, []);
+
+
     useEffect(() => {
-      updateDisplayedProducts();
+      // updateDisplayedProducts();
     }, [filteredProducts]); 
   
     const init = () => {
-      updateNewItems();
-      updateFilteredProducts();
-      addDisplayedProducts();
+      setDisplayedProducts([...items]);
+      // updateNewItems();
+      // updateFilteredProducts();
+      // addDisplayedProducts();
     };
-  
-    const updateNewItems = () => {
-      const arr = [...products.slice(1)]; // Remove the test product
-      arr.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
-      const newItemsArr = [];
-      for (let i = 0; i < 10 && i < arr.length; i++) {
-        newItemsArr.push(arr[i]);
-      }
-      setNewItems(newItemsArr);
-    };
-  
-    const updateNewItemPos = (num) => {
-      let newPos = newItemPos + num;
-      if (newPos < 0) {
-        newPos = 0;
-      }
-      if (newItems.length > 1 && newPos > newItems.length - 1) {
-        newPos = newItems.length - 1;
-      }
-      setNewItemPos(newPos);
-    };
-  
-    const updateFilteredProducts = async() => {
-      const filtered = items.filter(
-        (el) => el.tags === currenttags || currenttags === "All"
-      );
-      console.log(filtered)
-      setFilteredProducts([...filtered])
-      console.log(filteredProducts)
 
-    };
+
   
-    const updateDisplayedProducts = () => {
-      const display = [];
-      setDisplayPos(0);
-      addDisplayedProducts();
-    };
+    // const updateNewItems = () => {
+    //   const arr = [...products.slice(1)]; // Remove the test product
+    //   arr.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   
-    const addDisplayedProducts = () => {
-      if (filteredProducts.length - displayPos <= 12) {
-        console.log(filteredProducts)
-        setDisplayedProducts([...filteredProducts]);
-        setDisplayPos(filteredProducts.length);
-      } else {
-        const newDisplay = [...displayedProducts];
-        for (
-          let i = 0;
-          i < (displayPos === 0 ? 13 : 12);
-          i++
-        ) {
-          newDisplay.push(filteredProducts[i + displayPos]);
-        }
-        setDisplayedProducts(newDisplay);
-        setDisplayPos(displayPos + (displayPos === 0 ? 13 : 12));
+    //   const newItemsArr = [];
+    //   for (let i = 0; i < 10 && i < arr.length; i++) {
+    //     newItemsArr.push(arr[i]);
+    //   }
+    //   setNewItems(newItemsArr);
+    // };
+  
+    // const updateNewItemPos = (num) => {
+    //   let newPos = newItemPos + num;
+    //   if (newPos < 0) {
+    //     newPos = 0;
+    //   }
+    //   if (newItems.length > 1 && newPos > newItems.length - 1) {
+    //     newPos = newItems.length - 1;
+    //   }
+    //   setNewItemPos(newPos);
+    // };
+  
+    // const updateFilteredProducts = async() => {
+    //   const filtered = items.filter(
+    //     (el) => el.tags === currenttags || currenttags === "All"
+    //   );
+    //   setFilteredProducts([...filtered])
+
+    // };
+  
+    // const updateDisplayedProducts = () => {
+    //   const display = [];
+    //   setDisplayPos(0);
+    //   addDisplayedProducts();
+    // };
+    const endCheck=(temp)=>{
+      if(temp.length%12==0 &&temp.length!=0){
+        setIsEnd(false)
+      }else{
+        setIsEnd(true)
       }
-    };
+    }
+
+
+    const addDisplayedProducts = async({title="",tag="",reset=false}) => {
+      if (reset){
+        let temp = await getProducts({skip:0,title:title,tags:tag})
+        endCheck(temp)
+        setDisplayedProducts([...temp])
+      }else{
+      let temp = await getProducts({skip:displayedProducts.length,title:title,tags:tag})
+      endCheck(temp)
+      setDisplayedProducts((pro)=>[ ...pro,...temp])
+      }
+    }
+    // const addDisplayedProducts = () => {
+    //   if (filteredProducts.length - displayPos <= 12) {
+    //     setDisplayedProducts([...filteredProducts]);
+    //     setDisplayPos(filteredProducts.length);
+    //   } else {
+    //     const newDisplay = [...displayedProducts];
+    //     for (
+    //       let i = 0;
+    //       i < (displayPos === 0 ? 13 : 12);
+    //       i++
+    //     ) {
+    //       newDisplay.push(filteredProducts[i + displayPos]);
+    //     }
+    //     setDisplayedProducts(newDisplay);
+    //     setDisplayPos(displayPos + (displayPos === 0 ? 13 : 12));
+    //   }
+    // };
   
-    const updateViewedProduct = () => {
-      const viewed = items.filter((el) => el.id === currentViewedProduct)[0];
-      setViewedProduct(viewed);
-    };
+    // const updateViewedProduct = () => {
+    //   const viewed = items.filter((el) => el.id === currentViewedProduct)[0];
+    //   setViewedProduct(viewed);
+    // };
   
     const viewProduct = (product) => {
       setViewedProduct(product);
@@ -143,14 +167,16 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     <div className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="left">All Products<span>{currenttags !== 'All' ? `/${currenttags}` : ''}</span></h2>
-          <div className="right category-select">
+          <h2 className="right">מוצרים<span>{currenttags !== 'All' ? `/${currenttags}` : ''}</span></h2>
+          <div style={{zIndex:4}} className="left category-select">
             {tags.map((c) => (
-              <div key={c} className={`rela-inline category ${currenttags === c ? 'active' : ''}`} onClick={() => { setCurrenttags(c); updateFilteredProducts(); }}>{c}</div>
+              <div key={c} className={`rela-inline category ${currenttags === c ? 'active' : ''}`} onClick={() => { setCurrenttags(c); 
+                addDisplayedProducts({tag:c,reset:true})
+              }}>{c}</div>
             ))}
           </div>
-          <div className="search-bar1">
-          <input type="text" placeholder="Search Book" />
+          <div style={{left:"150px"}} className="center search-bar1">
+          <input type="text" placeholder="Search Book" onChange={(data)=>{addDisplayedProducts({title:data.target.value,tag:currenttags,reset:true});}}/>
         </div>
         </div>
         <div className="rela-block product-item-container">
@@ -158,9 +184,12 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
             <ProductComp key={index} info={item} view={viewProduct} />
           ))}
         </div>
-        {displayPos < filteredProducts.length && (
-          <div className="rela-block load-button">
-            <div className="rela-inline load-button-container" onClick={addDisplayedProducts}>
+        {!isEnd && (
+          <div className="rela-block load-button"
+          style={{top:"20px"}}>
+            <div className="rela-inline load-button-container" 
+             onClick={()=>{addDisplayedProducts({tag:currenttags})}}
+            >
               <p>Load More</p>
               <svg viewBox="0 0 50 50" className="button-svg">
                 <path />
@@ -176,8 +205,8 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         <div className="rela-block section-nav">
           <h2 className="right">עלינו</h2>
         </div>
-        <img src={rightImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img> 
-        <img src={leftImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img>
+        <img src={leftImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img> 
+        <img src={rightImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img>
       </div>
     </div>
     <div className="rela-block page-section grey product-section">
@@ -197,7 +226,12 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         <ContactUs />
         {/* <div className='right'> */}
         <div class="right-column">
-          
+        <div className='rightChild'>
+          <a  href = "https://www.google.co.il/maps/place/32%C2%B036'28.1%22N+35%C2%B017'36.5%22E/@32.6078101,35.2960471,17z/data=!3m1!4b1!4m12!1m7!3m6!1s0x151c53c38bc536fb:0xb88126105c8669c7!2z16nXnNeY15kg15TXptek15XXnw!8m2!3d32.6075587!4d35.293445!16s%2Fg%2F1tcx4ch0!3m3!8m2!3d32.6078056!4d35.2934722?entry=ttu"
+          >עפולה, קהילת ציון 8</a>
+          <a color='black'href = "https://www.google.co.il/maps/place/32%C2%B036'28.1%22N+35%C2%B017'36.5%22E/@32.6078101,35.2960471,17z/data=!3m1!4b1!4m12!1m7!3m6!1s0x151c53c38bc536fb:0xb88126105c8669c7!2z16nXnNeY15kg15TXptek15XXnw!8m2!3d32.6075587!4d35.293445!16s%2Fg%2F1tcx4ch0!3m3!8m2!3d32.6078056!4d35.2934722?entry=ttu"
+          ><Icon icon="akar-icons:location" width="30" /></a>
+        </div>
         <div className='rightChild'>
           <a style={{display: "inline-block"}} href="tel:04-6527526">04-6527526</a>
           <a color='black' href="tel:04-6527526"><Icon style={{display: "inline-block"}} href="tel:04-6527526" width="30" icon="solar:phone-line-duotone" /></a>

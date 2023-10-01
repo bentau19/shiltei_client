@@ -15,7 +15,7 @@ export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
     <div  className={`rela-block nav-bar ${menuOpen ? 'shifted' : ''}`}>
       <div className="rela-block gutter-container inner-nav-container">
         <div className={`nav-flip top ${searchOpen ? 'active' : ''}`}>
-          <div className="abs-center logo link">שילטי הצפון</div>
+          <div className="abs-center logo link">שלטי הצפון</div>
           {/* <div className="abs-center" style={{paddingTop:"20px", backgroundColor:"white",overflow: "visible"}} ><img src={ReactLogo} style={{overflow: "visible"}}  alt="shiltei" width={"150px"}></img></div> */}
           <div className={`left ui-icon menu-button ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
             <svg viewBox="0 0 40 50" className="button-svg">

@@ -5,6 +5,7 @@ import { getItems, getServerId } from '../../localStorage';
 import App2 from '../Home/testHome';
 import ReactLogo from '../../NavBar/shiltei.ico';
 import { useNavigationContext } from '../../NavigationContext';
+import { getProducts } from '../../serverReq';
 
 const LoadingPage=({setLoading,menuOpen,setCart})=>{
     const [highlights,setHighlight] = useState([])
@@ -12,17 +13,17 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
     const [current,setcurrent] = useState(false)
     const { toggleNavigationBar } = useNavigationContext();
     const [tags,setTags]=useState([])
-    useEffect(()=>{
-      toggleNavigationBar("client");
+    
+    useEffect( ()=>{
+      const fetchData = async () => {
+        toggleNavigationBar("client");
         setLoading(true);
         Axios.post(getServerId()+"/get-tags",{
         }).then((res)=>{
           setTags(res.data)
         }
         )
-        Axios.post(getServerId()+"/get-products", {
-        }).then((res) => {
-            const data = res.data;
+            const data =await getProducts({}) ;
             const highlightItems = data.filter((product) => product.highlight === true);
             const regularItems = data.filter((product) => product.highlight === false);
       
@@ -31,7 +32,10 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
             setCart(getItems())
             setLoading(false);
             setcurrent(true)
-        })
+      }
+      fetchData();
+      
+        
     },[])
 
 

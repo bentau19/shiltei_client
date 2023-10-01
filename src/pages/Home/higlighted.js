@@ -8,7 +8,7 @@ import "./highlighted.css";
 
 // import required modules
 import { Pagination, Navigation,Autoplay } from "swiper/modules";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const colors = ["#fbadaf","#a4e0eb","#edb9d6","#fdca95","#cbb5e2"]
 
@@ -36,8 +36,7 @@ export const CardView =({product,viewProduct})=>{
 </div>
 </div>
 }
-
-{/* <div style={{width:"400px"}} className="book-cell">
+/* <div style={{width:"400px"}} className="book-cell">
 <div className="book-img">
   <img
    src="https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg"
@@ -54,7 +53,7 @@ export const CardView =({product,viewProduct})=>{
  </div>
  <div className="book-see">See The Book</div>
 </div>
-</div> */}
+</div> */
 
 
 
@@ -63,10 +62,10 @@ export const HighlightView=({highlights,viewProduct})=>{
     const {innerWidth, innerHeight} = window;
     return {innerWidth, innerHeight};
   }
-  const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [, setWindowSize] = useState(getWindowSize());
   useEffect(() => {
     function handleWindowResize() {
-      
+
       setWindowSize(getWindowSize());
     }
 
@@ -78,10 +77,13 @@ export const HighlightView=({highlights,viewProduct})=>{
   }, []);
 
 
+
+
     
     return (
         <>
-        <div className="book-slide" style={{ height:"50vh" , maxWidth:"67%",}}>
+        <div className="book-slide" style={{ height:"320px" , maxWidth:"67%",}}>
+          
           <Swiper 
         autoplay={{
           delay: 5000,
@@ -89,8 +91,9 @@ export const HighlightView=({highlights,viewProduct})=>{
           pauseOnMouseEnter:true,
         }}
 
-            slidesPerView={windowSize.innerWidth/400 |0}
+            slidesPerView={Math.floor(window.innerWidth / 400)>3?3:Math.floor(window.innerWidth / 400)}
             spaceBetween={1}
+            loopedSlidesLimit={false}
             // style={{ overflow: "visible"}}
             pagination={{
               clickable: true
@@ -101,7 +104,9 @@ export const HighlightView=({highlights,viewProduct})=>{
             modules={[Pagination, Navigation,Autoplay]}
             className="mySwiper"
           >
-            {highlights.map((product,i)=>{
+            {
+
+            highlights.map((product,i)=>{
               return <SwiperSlide key={i} className='mainCard' style={{backgroundColor:colors[i%6]}} >
                 <CardView product={product} viewProduct={viewProduct} />
               </SwiperSlide>

@@ -32,6 +32,7 @@ export function ManagerHome() {
       const {state} = useLocation();
       const { managerPass } = state;
   const [products,setProducts] = useState([]);
+
   const { toggleNavigationBar } = useNavigationContext();
   const [tags,setTags]= useState([])
   useEffect(() => {
@@ -114,8 +115,12 @@ export function ManagerHome() {
           } }).then(
         (res) => {
           if (res.status===200){
+            product._id=product.title
+
             success_notify("Add Succefull!!");
             setProducts(products => [product,...products])
+
+            
           }else{
             error_notify("internet connection error");
           console.log("Try Again Later!")
@@ -175,7 +180,7 @@ export function ManagerHome() {
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={product._id}> 
-            <Card updateTags={updateTags} handleSend = {updateCard} deleteItem = {deleteItem} key={i} product = {product} setGlobaltags={setTags} globaltags={tags} last = {false} />
+            <Card updateTags={updateTags} handleSend = {updateCard} deleteItem = {deleteItem} key={product._id} product = {product} setGlobaltags={setTags} globaltags={tags} last = {false} />
             </div>
           })
         }
