@@ -1,5 +1,5 @@
 * {
-
+    
     transition: 0.3s cubic-bezier(0.6, 0, 0.2, 1);
   }
   .abs-center {
@@ -19,6 +19,7 @@
     transform: translateX(-50%);
   }
   .rela-block {
+    
     box-sizing: border-box;
     display: block;
     position: relative;
@@ -79,7 +80,8 @@
     left: 0;
     bottom: 0;
     width: 300px;
-    background-color: #e6e6e6;
+    background-color:#E4EBF5;
+    /* background-color: #e6e6e6; */
     text-align: center;
     padding: 20px;
   
@@ -92,7 +94,7 @@
     bottom: 0;
     overflow-y: auto;
     width: 100%;
-    background-color: #fff;
+    background-color:#E4EBF5;
     box-shadow: -2px 0 18px -1px rgba(0,0,0,0.2);
   }
   .page-container.shifted {
@@ -117,7 +119,8 @@
   }
   .page-section {
     padding: 30px 0;
-    background-color: #fff;
+    background-color:#E4EBF5;
+    /* background-color: #fff; */
   }
   .search-bar1 {
 /* padding: 15px; */
@@ -148,8 +151,9 @@
   }
   
   .page-section.grey {
-    background-image: url('./nave_muzar.png'); 
-    background-color: #f4f4f4;
+    /* background-image: url('./nave_muzar.png');  */
+    background-color: #d7dde7;    
+    /* background-color: #f4f4f4; */
   }
 
   .new-item-container {
@@ -167,7 +171,8 @@
     font-family: 'Comfortaa', Helvetica, sans-serif;
     font-size: 20px;
     text-align: center;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color:#E4EBF5;
     border-radius: 6px;
     cursor: pointer;
   }

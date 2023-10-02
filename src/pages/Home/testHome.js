@@ -3,7 +3,7 @@ import './testHome.css';
 import LoadingBall from '../../loadingBall/loadingBall';
 import {HighlightView} from './higlighted'
 import { ProductComp } from './HomeComp/ProductComp';
-import { FullViewComp } from './HomeComp/fullViewComp';
+import { FullViewComp, ProductView } from './HomeComp/fullViewComp';
 import { NavLink } from 'react-router-dom';
 import rightImg from './aboutUsRight.png';
 import leftImg from './aboutUsLeft.png';
@@ -13,12 +13,13 @@ import { getProducts } from '../../serverReq';
 
 const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
-    const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
+    // const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
     const [isEnd, setIsEnd] = useState(false);
+    const [search, setSearch] = useState("");
     const [viewedProduct, setViewedProduct] = useState({});
-    const [newItems, setNewItems] = useState([]);
-    const [newItemPos, setNewItemPos] = useState(0);
-    const [products, setProducts] = useState([
+    // const [newItems, setNewItems] = useState([]);
+    // const [newItemPos, setNewItemPos] = useState(0);
+     const [products, setProducts] = useState([
         {
             id: -1,
             name: "Test",
@@ -176,7 +177,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
             ))}
           </div>
           <div style={{left:"150px"}} className="center search-bar1">
-          <input type="text" placeholder="Search Book" onChange={(data)=>{addDisplayedProducts({title:data.target.value,tag:currenttags,reset:true});}}/>
+          <input type="text" dir="rtl" placeholder="חפש שלט" onChange={(data)=>{setSearch(data);addDisplayedProducts({title:data.target.value,tag:currenttags,reset:true});}}/>
         </div>
         </div>
         <div className="rela-block product-item-container">
@@ -266,7 +267,8 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     </div>
   </div> 
   <div className={`product-view-container ${productViewOpen ? 'active' : ''}`}>
-    <FullViewComp setProductViewOpen={setProductViewOpen} viewedProduct={viewedProduct} setCart={setCart}/>
+    {/* <ProductView/> */}
+     <FullViewComp setProductViewOpen={setProductViewOpen} viewedProduct={viewedProduct} setCart={setCart}/> 
       </div>
     </div>
 }
