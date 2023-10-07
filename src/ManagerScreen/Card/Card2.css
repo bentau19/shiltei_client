@@ -8,11 +8,11 @@ div.card2{
 }
 div.newcard{
   margin: 10px;
-  margin-bottom:90px;
+
   display:inline-block;
   background-color:transparent;
   border-style: dashed;
-  height: 200px;
+
   width: 350px;
   text-align: center;
   

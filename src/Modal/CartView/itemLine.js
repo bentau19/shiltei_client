@@ -1,4 +1,4 @@
-// ItemLine.js
+import'./itemLine.css' 
 
 import React, { useEffect, useState } from 'react';
 import { idToItem } from '../../localStorage';
@@ -31,16 +31,11 @@ export const ItemLine = ({ id, i, setTotal, onRemove, idsLen, changed }) => {
   
   return (
     <div key={i} style={{ width: '100%', display: 'flex' }}>
-      <div style={{ width: '90%' }}>
+      {/* <div style={{ width: '90%' }}>
         {product ? (
-          <>
-            <h2>
-              {i + 1}. product name: {product.title} <br />
-              makat: {product.makat} <br />
-              price: {product.price}
-            </h2>
-            <h1>{idsLen === i + 1 ? '-----' : '+'}</h1>
-          </>
+          <div className='card'>
+
+          </div>
         ) : (
           <p>Loading...</p>
         )}
@@ -49,7 +44,7 @@ export const ItemLine = ({ id, i, setTotal, onRemove, idsLen, changed }) => {
         <button onClick={() => {onRemove(product.price,i)}} style={{ color: '#8B0000' }}>
           X
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

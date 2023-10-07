@@ -7,6 +7,7 @@ import { getServerId } from '../../localStorage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigationContext } from '../../NavigationContext';
+import { getProducts } from '../../serverReq';
 export function ManagerHome() {
   const navigate = useNavigate();
   const success_notify = (message) =>toast.success(message, {
@@ -70,15 +71,13 @@ export function ManagerHome() {
         setTags(res.data);  
       })
     }
-    const getData=()=>{
-      Axios.post(getServerId()+"/get-products", {
-      }).then((res) => {
-        let d = [...res.data]
+    const getData=async()=>{
+        let data =await getProducts({limit:null})
+        let d = [...data]
         d.reverse()
         setProducts(d);
-          
-      })
     }
+
     const deleteItem=(_id)=>{
       Axios.post(getServerId()+"/delete-product",
       {params:{
@@ -108,6 +107,7 @@ export function ManagerHome() {
           makat:product.makat,
           size:product.size,
           price:product.price,
+          description:product.description,
           picture:product.picture,
           highlight:product.highlight,
           tags:product.tags,
@@ -132,14 +132,13 @@ export function ManagerHome() {
     }
   }
 
-  const searchCards=(title)=>{
-      Axios.post(getServerId()+"/search-product-byTitle", { params: { title: title } }).then(
-        (res) => {
-          let d = [...res.data]
+  const searchCards=async (title)=>{
+    let data =await getProducts({limit:null,title:title})
+          let d = [...data]
           d.reverse()
           setProducts(d);
-        }
-      );
+        
+      
   }
 
    const updateCard=(product)=>{
@@ -149,6 +148,7 @@ export function ManagerHome() {
       makat:product.makat,
       size:product.size,
       price:product.price,
+      description:product.description,
       picture:product.picture,
       highlight:product.highlight,
       tags:product.tags,

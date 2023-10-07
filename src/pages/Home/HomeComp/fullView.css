@@ -23,6 +23,7 @@
     padding: 1em;
 }
 .onb-product-view--image-slider {
+    display: flex;
     width: 90%;
 }
 @media screen and (min-width: 64em) {
@@ -220,8 +221,9 @@
 	 grid-row: 0.75;
 }
  .form__input {
-	 width: 20.4rem;
-	 height: 4rem;
+	 width: 96%;
+	 height: 2rem;
+     padding-right: 20px;
 	 border: none;
 	 border-radius: 1rem;
 	 font-size: 1.4rem;
@@ -232,9 +234,11 @@
 	 color: var(--greyDark);
 }
  .form__input::placeholder {
+
 	 color: var(--greyLight-3);
 }
  .form__input:focus {
+
 	 outline: none;
 	 box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
 }

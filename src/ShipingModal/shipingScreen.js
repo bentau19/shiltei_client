@@ -74,9 +74,9 @@ function ShipModel({handleSend}) {
                 :עיר
                 </div>
                 <div className='cont2'>
-                <input ref={nameRef} style={{fontSize:"20px"}} dir="rtl" />
-                :שם
                 <input ref={emailRef} style={{width:"350px", fontSize:"20px"}} />
+                :שם
+                <input ref={nameRef} style={{fontSize:"20px"}} dir="rtl" />
                 :אימייל
             </div>
 

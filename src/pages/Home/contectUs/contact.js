@@ -61,7 +61,7 @@ function ContactUs() {
   };
 
   return (
-    <div style={{marginBottom:"20px", marginTop:"-20px",width:"60%",float: "left"}} className="contact-us-container">
+    <div dir='rtl' style={{marginBottom:"20px", marginTop:"-20px",width:"60%",float: "left"}} className="contact-us-container">
       <form onSubmit={handleSubmit}>
         <div className="contact-us-form-group">
          
@@ -72,7 +72,7 @@ function ContactUs() {
             value={formData.name}
             onChange={handleChange}
             className="contact-us-input"
-            placeholder="Your Name"
+            placeholder="שם מלא"
             required
           />
         </div>
@@ -85,7 +85,7 @@ function ContactUs() {
             value={formData.email}
             onChange={handleChange}
             className="contact-us-input"
-            placeholder="Your Email"
+            placeholder="אימייל"
             required
           />
         </div>
@@ -98,23 +98,24 @@ function ContactUs() {
             value={formData.subject}
             onChange={handleChange}
             className="contact-us-input"
-            placeholder="Subject"
+            placeholder="נושא"
             required
           />
         </div>
         <div className="contact-us-form-group">
 
           <textarea
+          
             id="content"
             name="content"
             value={formData.content}
             onChange={handleChange}
             className="contact-us-textarea"
-            placeholder="Your Message"
+            placeholder="הודעה"
             required
           />
         </div>
-        <button type="submit" className="contact-us-button">Send</button>
+        <button type="submit" className="contact-us-button">שלח</button>
       </form>
       <ToastContainer
           position="bottom-center"

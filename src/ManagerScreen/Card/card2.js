@@ -8,12 +8,14 @@ import {Product} from '../../productClass'
 const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globaltags,key})=>{
    let cardClass ="card2"
     let buttonValue ="update"
+    const descriptionRef=useRef(null);
     const titleRef=useRef(null);
     const makatRef=useRef(null);
     const sizeRef=useRef(null);
     const priceRef=useRef(null);
     const pictureRef=useRef(null);
-    const [id]=useState(product._id)
+    const [id]=useState(product._id);
+    const [description]=useState(product.description)
     const [title] = useState(product.title);
     const [makat] = useState(product.makat);
     const [size] = useState(product.size);
@@ -25,7 +27,6 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
       cardClass = "newcard"
       buttonValue="save"
     }
-    let height="570px";
   
 
     
@@ -37,6 +38,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
         makatRef.current.value,
         sizeRef.current.value,
         pictureRef.current.value,
+        descriptionRef.current.value,
         priceRef.current.value,
         tags,
         checked,
@@ -51,6 +53,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
     makatRef.current.value=""
     pictureRef.current.value=""
     priceRef.current.value=""
+    descriptionRef.current.value=""
     sizeRef.current.value="/"
     setChecked(false)
     setTags([])
@@ -65,7 +68,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
     
 
     return(
-    <div key={key}  id="mainDiv" className= {cardClass} style={{height:height}}>
+    <div key={key}  id="mainDiv" className= {cardClass} >
     {last?<button onClick={reset}>RESET</button>:<button onClick={()=>deleteItem(product._id)}>X</button>}
     <div className='cont'>
     title: 
@@ -87,6 +90,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
     size:
     <input ref={sizeRef}  defaultValue={size}/>
     </div>
+    <textarea defaultValue={description} ref={descriptionRef} dir="rtl" placeholder='תיאור...' style={{fontSize:"20px" ,width:"300px",height:"60px"}}/>
     <div className='cont'>
     highlight:
     <ReactSwitch
@@ -107,7 +111,7 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
         updateTags={updateTags}
       />
 
-      <button onClick={haundleSave} style={{height:"30px",width:"70px",marginTop:"10px"}}>{buttonValue}</button>
+      <button onClick={haundleSave} style={{height:"30px",width:"70px",marginTop:"10px",marginBottom:"10px"}}>{buttonValue}</button>
     </div>);
 }
 export default Card;

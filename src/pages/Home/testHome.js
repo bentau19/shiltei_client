@@ -182,7 +182,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         </div>
         <div className="rela-block product-item-container">
           {displayedProducts.map((item, index) => (
-            <ProductComp key={index} info={item} view={viewProduct} />
+            <ProductComp key={index} info={item} view={viewProduct}  />
           ))}
         </div>
         {!isEnd && (
@@ -191,7 +191,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
             <div className="rela-inline load-button-container" 
              onClick={()=>{addDisplayedProducts({tag:currenttags})}}
             >
-              <p>Load More</p>
+              <p>טען עוד</p>
               <svg viewBox="0 0 50 50" className="button-svg">
                 <path />
               </svg>
@@ -268,7 +268,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
   </div> 
   <div className={`product-view-container ${productViewOpen ? 'active' : ''}`}>
     {/* <ProductView/> */}
-     <FullViewComp setProductViewOpen={setProductViewOpen} viewedProduct={viewedProduct} setCart={setCart}/> 
+     <FullViewComp setProductViewOpen={setProductViewOpen} setViewedProduct={setViewedProduct} viewedProduct={viewedProduct} setCart={setCart}/> 
       </div>
     </div>
 }

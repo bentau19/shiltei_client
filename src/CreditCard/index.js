@@ -12,7 +12,7 @@ function CreditCardView({onCloseFunc,ship,name,email}) {
     return (
         <React.Fragment>
             <Card formData={formData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} />
-            <Form setFormData={setFormData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} sendDataForm={sendDataForm} handleClose={()=>onCloseFunc(ship,email,name)} />
+            <Form setFormData={setFormData} setCardFlipped={setCardFlipped} cardFlipped={cardFlipped} sendDataForm={sendDataForm} handleClose={()=>onCloseFunc(ship,name,email)} />
         </React.Fragment>
     );
 }

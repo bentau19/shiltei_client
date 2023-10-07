@@ -12,6 +12,7 @@ function ItemInfoModal({sum,items,setItems,handleParentClose,setTotal}) {
       handleParentClose(false);};
       
       const handleSend = (ship,name,email) =>{
+        console.log(name)
         setOpen(false);
         fetch('https://api.ipify.org?format=json')
         .then(response => response.json())

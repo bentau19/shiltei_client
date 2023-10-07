@@ -1,4 +1,4 @@
-.cart {
+ .cart {
     box-sizing: border-box;
     position:absolute;
     z-index: 100;
@@ -8,9 +8,14 @@
     width: 300px;
     background-color: #e6e6e6;
     text-align: center;
-    padding: 20px;
-  }
+    /* padding: 20px; */
+   } 
   .rela-block {
     display: block;
     position: relative;
   }
+
+  .cd-item-remove {
+    right: 2em;
+  }
+  
