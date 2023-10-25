@@ -72,15 +72,19 @@ export const FullViewMaker=(items,order,setOrder,pass)=>{
             <th>price</th>
             <th>makat</th>
             <th>size</th>
+            <th>content</th>
+            <th>comments</th>
           </tr>
         </thead>
         <tbody className='tbodyClass'>
         {items.map((item, i) => (
           <tr key={i}>
-          <td>{item.title}</td>
-          <td>{item.price}</td>
-          <td>{item.makat}</td>
-          <td>{item.size}</td>
+          <td>{item.id.title}</td>
+          <td>{item.id.price}</td>
+          <td>{item.id.makat}</td>
+          <td>{item.id.size}</td>
+          <td>{item.content}</td>
+          <td>{item.comments}</td>
         </tr>
             ))}
         </tbody>

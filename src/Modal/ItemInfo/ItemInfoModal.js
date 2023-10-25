@@ -53,7 +53,7 @@ function ItemInfoModal({sum,items,setItems,handleParentClose,setTotal}) {
           )
     }
     return<div>
-    <button onClick={handleOpen}>BUY</button>
+    <button onClick={handleOpen}>מעבר לתשלום</button>
     <Modal 
       open={open}
       onClose={handleClose}

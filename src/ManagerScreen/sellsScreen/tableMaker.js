@@ -8,7 +8,7 @@ export const TableMaker=(sells,setItems,setOrder)=>{
       <div className={styles.sellTableTitle}>
         <h3>Orders</h3>
       </div>
-      <div className={styles.sellPageContainer}>
+      <div className={styles.sellPageContainer} >
         <table className={`sellTableFill`}>
           <thead>
             <tr>

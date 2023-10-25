@@ -37,19 +37,22 @@ function ShipModel({handleSend}) {
       streetRef.current.disabled =val;
     }
     
-    
     const handleOpen = () =>{
-      if(checked){
-        if(nameRef.current.value!==""&&emailRef.current.value!=="")
-          setOpen(true);
-        else
-        alert("Please fill Email and Name.");
-      }else{
-      setShip(createShip())
-      if (ship!=="e")
-      setOpen(true);
-    }
+      handleSend(ship,nameRef.current.value,emailRef.current.value);
     };
+
+    // const handleOpen = () =>{
+    //   if(checked){
+    //     if(nameRef.current.value!==""&&emailRef.current.value!=="")
+    //       setOpen(true);
+    //     else
+    //     alert("Please fill Email and Name.");
+    //   }else{
+    //   setShip(createShip())
+    //   if (ship!=="e")
+    //   setOpen(true);
+    // }
+    // };
     const handleClose = () =>{
       setOpen(false);};
     return<div>
@@ -86,7 +89,8 @@ function ShipModel({handleSend}) {
       open={open}
       onClose={handleClose}
     >
-     <div><CreditCardView ship={ship} name={nameRef.current.value} email={emailRef.current.value} onCloseFunc={handleSend} /></div> 
+     <div>
+      <CreditCardView ship={ship} name={nameRef.current.value} email={emailRef.current.value} onCloseFunc={handleSend} /></div> 
     </Modal></div>
 }
 

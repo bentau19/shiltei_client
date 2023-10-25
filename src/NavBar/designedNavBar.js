@@ -1,12 +1,11 @@
 import { useState } from "react";
 import '../pages/Home/testHome.css';
 import './designedNavBar.css';
-import ReactLogo from './shiltei.ico';
-import { Cart } from "../cart/cart";
+import { Cart } from "../Cart/cart";
 export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
     const [cartOpen, setCartOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
-    const [searchInput, setSearchInput] = useState("");
+    const [searchInput] = useState("");
     return <div id="app">
           <div className="menu">
     <p className="rela-block">MENU</p>
@@ -16,7 +15,6 @@ export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
       <div className="rela-block gutter-container inner-nav-container">
         <div className={`nav-flip top ${searchOpen ? 'active' : ''}`}>
           <div className="abs-center logo link">שלטי הצפון</div>
-          {/* <div className="abs-center" style={{paddingTop:"20px", backgroundColor:"white",overflow: "visible"}} ><img src={ReactLogo} style={{overflow: "visible"}}  alt="shiltei" width={"150px"}></img></div> */}
           <div className={`left ui-icon menu-button ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
             <svg viewBox="0 0 40 50" className="button-svg">
               <path d="M 7 15 L 33 15" />

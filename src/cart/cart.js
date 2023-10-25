@@ -1,22 +1,63 @@
-import { useState } from 'react';
-import { ItemLine } from '../Modal/CartView/itemLine';
-import { removeItem } from '../localStorage';
+import { useEffect, useState } from 'react';
+import { idToItem, removeItem } from '../localStorage';
 import './cart.css'
-import ItemInfoModal from '../Modal/ItemInfo/ItemInfoModal';
 import { Icon } from '@iconify/react';
+import ItemInfoModal from '../Modal/ItemInfo/ItemInfoModal';
+
+export const ProductLine=({id, i, setTotal, onRemove})=>{
+  const [product, setProduct] = useState(null);
+  const [load, setLoad] = useState(false);
+  useEffect(() => { 
+    setLoad(true)
+    const fetchProduct =  async() => {
+      try {
+        const res = await idToItem(id);
+        if (res) {
+          setProduct(res);
+          if(product==null){
+            setTotal((prevTotal) => prevTotal + res.price); 
+          } 
+          setLoad(false)
+        } else {
+          console.error('Product not found');
+        }
+      } catch (error) {
+        console.error("error");
+      }
+    };
+    fetchProduct();
+  }, [id]);
+  return <>
+  {product&&<div key={id} className='product-line'>
+            {!load?<div><div className='product-img'
+              style={{
+                width:"100px",
+                height:"120px",
+                background: `url('`+product.picture+`') center center no-repeat`,
+                backgroundSize:"cover",
+              }}
+            >
+              <div className='delete-item-button' onClick={()=>{onRemove(product.price,i)}}>
+              <Icon icon="material-symbols:delete-outline" className='delete-icon' width="30" hFlip={true} />
+              </div>
+            </div>
+            <h3 dir="rtl" className='product-title'>{product.title}</h3>
+            <textarea dir="rtl" className='product-comment'>{id.content}</textarea>
+            <Icon icon="mdi:sign"  width="25" hFlip={true} />
+            <textarea dir="rtl" className='product-comment'>{id.comment}</textarea>
+            <Icon icon="material-symbols:comment-outline"  width="25" hFlip={true} />
+            <p dir="rtl" className='product-price'>מחיר: {product.price}₪</p></div>:<div dir="ltr" style={{textAlign:"left"}}><h1>LOADING...</h1></div>}
+          </div>}
+  </>
+}
+
+
+
 export const Cart =({cartOpen,items,setItems,setCartOpen})=>{
 
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => {setchanged(false);setOpen(false)};
-    const [total, setTotal] = useState(0);
-    const [changed, setchanged] = useState(false);
-  
-//   useEffect(()=>{
-//     setTotal(0)
-//   },[cartOpen])
-  
-    function onRemove(price,i) {
-      setchanged(true)
+const [total, setTotal] = useState(0);
+
+function onRemove(price,i) {
       setTotal((prevTotal) => prevTotal - price); // Update total in CartModal
       removeItem({
         index: i,
@@ -27,60 +68,51 @@ export const Cart =({cartOpen,items,setItems,setCartOpen})=>{
     function buttonChange() {
       if (total !== 0) {
         return (
-          <div>
-            total price - {total} ש"ח
-            <div disabled className='buttonC'>
-              <ItemInfoModal sum={total} items={items} setItems={setItems} handleParentClose={setCartOpen} setTotal={setTotal} />
-            </div>
+          <div className='bottom-bar'>
+          <p>{total}₪ :סהכ לתשלום</p>
+          <div disabled className='buttonC'>
+            <ItemInfoModal sum={total} items={items} setItems={setItems} handleParentClose={()=>{setCartOpen(false)}} setTotal={setTotal} />
           </div>
+        </div>
         );
       } else {
-        return <div><h1>The cart is empty</h1></div>;
+        return <div style={{textAlign:"center"}}><h1>The cart is empty</h1></div>;
       }
     }
 
 
-
-    return <div className="cart" style={cartOpen ?{right:"0"}:{}}>
-      <div style={{width:"100%",height:"50px",backgroundColor:"aliceblue", border:"0.5px solid"}}>
-      <Icon style={{position:"absolute", margin:"5px", right:0}} icon="mdi:cart"  width="35" hFlip={true} />
-      <h2 style={{display: "inline-block"}}>עגלת קניות</h2>
-      <Icon onClick={()=>setCartOpen(false)} style={{display: "inline-block",margin:"5px",position:"absolute", left:"7px"}} width="32" icon="carbon:close-outline" />
-        <div>
-        <div
-  style={{
-    left:0, float: "left",
-    width: "100px",
-    height: "100px",
-    background: `url('https://img.freepik.com/free-photo/red-stop-sign-downtown_53876-143018.jpg?w=740&t=st=1696148494~exp=1696149094~hmac=01e0a40897a558154542a149b2db5c72fa5f7dcf22f5b35c3e292700653cdd6e') center center no-repeat`,
-    backgroundSize: "cover",
-  }}
-></div>
+    
 
 
-<div style={{ clear: "left" }}></div>
-       
-        <hr></hr>
-        </div>
-      </div>
-      
-    {/* <p className={`rela-block `}style={{textDecoration: "underline"}} >CART</p> */}
-    {Array.isArray(items) &&
+    return<div className="cart-page" style={cartOpen ? {right:"0px"} : {right:"-400px " }}>
+    {(
+      <>
+        <div className='cart-props-container'>
+          <div style={{textAlign:"center"}}>
+          <Icon className='cart-icon' icon="mdi:cart" width="35" hFlip={true} />
+          <h2 style={{ display: "inline-block" }}>עגלת קניות</h2>
+          <Icon className='exit-button'  width="32" onClick={() => setCartOpen(false)} icon="carbon:close-outline" /> 
+          </div>
+          {Array.isArray(items)&&items.length!==0&&<div className='product-lines-container' >
+          {Array.isArray(items) &&
             items.map((id, i) => {
               return (
-                <ItemLine
+                <ProductLine
                   key={i}
-                  id={id}
                   i={i}
+                  id={id}
                   setTotal={setTotal} // Pass setTotal to ItemLine
                   onRemove={onRemove}
                   idsLen={items.length}
-                  changed={changed}
                 />
               );
             })
           }
-          {/* {buttonChange()} */}
+          </div>}
+          {buttonChange()}
+        </div>
+      </>
+    )}
   </div>
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { idToItem } from "../../localStorage";
 import styles from './sellStyle.module.css';
+import { ListedProduct } from "../../ListedProductClass";
 //   Products,TradeNum,price,name,ship,email,stage,date
 
 export const SellLine=({order,setFItems,i,setOrder,chosen,setChosenId})=>{
@@ -49,7 +50,8 @@ export const SellLine=({order,setFItems,i,setOrder,chosen,setChosenId})=>{
           for (let i = 0; i < order.items.length; i++) {
             let id = order.items[i];
             let tempItem = await idToItem(id);
-            updatedItems.push(tempItem); // Add the new item to the updated array
+            let tempPro= new ListedProduct(tempItem,id.content,id.comment)
+            updatedItems.push(tempPro); // Add the new item to the updated array
           }
           setItems(updatedItems); // Update the state with the new array of items
         } catch (e) {
@@ -62,7 +64,7 @@ export const SellLine=({order,setFItems,i,setOrder,chosen,setChosenId})=>{
         <td className={tdClass}>
             {
         items.map((product,n)=>{
-            return <p key={n}>{n+1}.{product.title}</p>
+            return <p key={n}>{n+1}.{product.id.title}</p>
         })}
         </td>
         <td className={tdClass}>{order.tradeNum}</td>

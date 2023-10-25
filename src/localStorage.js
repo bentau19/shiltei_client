@@ -1,8 +1,9 @@
 import Axios from 'axios';
+import { ListedProduct } from './ListedProductClass';
 export function getServerId(){
-   return "https://shilteiserver-production.up.railway.app"
+  //  return "https://shilteiserver-production.up.railway.app"
 //  return "https://shiltei-server-khn8.onrender.com"
-//  return "http://localhost:8000"
+  return "http://localhost:8000"
 } 
 
 export function getItems() {
@@ -13,7 +14,7 @@ export function getItems() {
 
 export async function idToItem(Id) {
   try {
-    const response = await Axios.post(getServerId() + "/search-product-byId", { id: Id });
+    const response = await Axios.post(getServerId() + "/search-product-byId", { id: Id.id });
     return response.data;
   } catch (error) {
     console.error('Error fetching product:', error);
@@ -21,13 +22,15 @@ export async function idToItem(Id) {
   }
 }
 
-export function addItems({id ,setItems}){
+export function addItems({id, content, comments, setItems}){
     let itemsIds =[]
     const oldIds = JSON.parse(localStorage.getItem("items"));
+    const listed = new ListedProduct(id,content,comments);
+    console.log(listed);
     if(oldIds!==null)
-    itemsIds=[...oldIds,id]
+    itemsIds=[...oldIds,listed]
   else
-    itemsIds=[id]
+    itemsIds=[listed]
     localStorage.setItem('items', JSON.stringify(itemsIds));
     setItems(itemsIds)
        

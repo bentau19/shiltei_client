@@ -74,44 +74,8 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     };
 
 
-  
-    // const updateNewItems = () => {
-    //   const arr = [...products.slice(1)]; // Remove the test product
-    //   arr.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  
-    //   const newItemsArr = [];
-    //   for (let i = 0; i < 10 && i < arr.length; i++) {
-    //     newItemsArr.push(arr[i]);
-    //   }
-    //   setNewItems(newItemsArr);
-    // };
-  
-    // const updateNewItemPos = (num) => {
-    //   let newPos = newItemPos + num;
-    //   if (newPos < 0) {
-    //     newPos = 0;
-    //   }
-    //   if (newItems.length > 1 && newPos > newItems.length - 1) {
-    //     newPos = newItems.length - 1;
-    //   }
-    //   setNewItemPos(newPos);
-    // };
-  
-    // const updateFilteredProducts = async() => {
-    //   const filtered = items.filter(
-    //     (el) => el.tags === currenttags || currenttags === "All"
-    //   );
-    //   setFilteredProducts([...filtered])
-
-    // };
-  
-    // const updateDisplayedProducts = () => {
-    //   const display = [];
-    //   setDisplayPos(0);
-    //   addDisplayedProducts();
-    // };
     const endCheck=(temp)=>{
-      if(temp.length%12==0 &&temp.length!=0){
+      if(temp.length%12==0 &&temp.length!==0){
         setIsEnd(false)
       }else{
         setIsEnd(true)
@@ -130,28 +94,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
       setDisplayedProducts((pro)=>[ ...pro,...temp])
       }
     }
-    // const addDisplayedProducts = () => {
-    //   if (filteredProducts.length - displayPos <= 12) {
-    //     setDisplayedProducts([...filteredProducts]);
-    //     setDisplayPos(filteredProducts.length);
-    //   } else {
-    //     const newDisplay = [...displayedProducts];
-    //     for (
-    //       let i = 0;
-    //       i < (displayPos === 0 ? 13 : 12);
-    //       i++
-    //     ) {
-    //       newDisplay.push(filteredProducts[i + displayPos]);
-    //     }
-    //     setDisplayedProducts(newDisplay);
-    //     setDisplayPos(displayPos + (displayPos === 0 ? 13 : 12));
-    //   }
-    // };
-  
-    // const updateViewedProduct = () => {
-    //   const viewed = items.filter((el) => el.id === currentViewedProduct)[0];
-    //   setViewedProduct(viewed);
-    // };
+ 
   
     const viewProduct = (product) => {
       setViewedProduct(product);

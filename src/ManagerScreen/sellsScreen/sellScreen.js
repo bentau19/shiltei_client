@@ -78,10 +78,10 @@ export function SellScreen() {
 
     return (
       <div >
-        <div style={{display: "flex"}}>
-          
-        {TableMaker(sells,setItems,setOrder, order)}
+        <div >
         {FullViewMaker(items,order,setOrder,managerPass)}
+        {TableMaker(sells,setItems,setOrder, order)}
+
         </div>
          <ToastContainer
           position="bottom-center"
