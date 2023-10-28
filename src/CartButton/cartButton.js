@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
-import { clearAll, getServerId } from '../../localStorage';
+import { clearAll, getServerId } from '../localStorage';
 import Axios from 'axios';
-import ShipModel from '../../ShipingModal/shipingScreen';
+import ShipModel from '../ShipingModal/shipingScreen';
 
-function ItemInfoModal({sum,items,setItems,handleParentClose,setTotal}) {
+function CartButton({sum,items,setItems,handleParentClose,setTotal}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () =>{
@@ -62,4 +62,4 @@ function ItemInfoModal({sum,items,setItems,handleParentClose,setTotal}) {
     </Modal></div>
 }
 
-export default ItemInfoModal;
+export default CartButton;

@@ -1,9 +1,9 @@
 import Axios from 'axios';
 import { ListedProduct } from './ListedProductClass';
 export function getServerId(){
-  //  return "https://shilteiserver-production.up.railway.app"
+  return "https://shilteiserver-production.up.railway.app"
 //  return "https://shiltei-server-khn8.onrender.com"
-  return "http://localhost:8000"
+  // return "http://localhost:8000"
 } 
 
 export function getItems() {
@@ -32,9 +32,17 @@ export function addItems({id, content, comments, setItems}){
   else
     itemsIds=[listed]
     localStorage.setItem('items', JSON.stringify(itemsIds));
-    setItems(itemsIds)
-       
+    setItems(itemsIds)   
 }
+
+export function updateItem({id, place}){
+  let itemsIds =JSON.parse(localStorage.getItem("items"));
+  itemsIds[place]=id.id;
+  console.log(itemsIds)
+
+  localStorage.setItem('items', JSON.stringify(itemsIds));
+}
+
 export function clearAll({setItems}){
     let newItems =[]
    setItems(newItems)

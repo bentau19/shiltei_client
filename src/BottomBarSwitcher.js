@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigationContext } from './NavigationContext';
-import { BottomBarClient, BottomBarManager } from './BottomBar/BottomBar';
+import { BottomBarManager } from './BottomBar/BottomBar';
 
 
 const BottomBarSwitcher = () => {

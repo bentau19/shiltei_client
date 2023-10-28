@@ -3,7 +3,7 @@ import './testHome.css';
 import LoadingBall from '../../loadingBall/loadingBall';
 import {HighlightView} from './higlighted'
 import { ProductComp } from './HomeComp/ProductComp';
-import { FullViewComp, ProductView } from './HomeComp/fullViewComp';
+import { FullViewComp } from './HomeComp/fullViewComp';
 import { NavLink } from 'react-router-dom';
 import rightImg from './aboutUsRight.png';
 import leftImg from './aboutUsLeft.png';
@@ -35,7 +35,6 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
 
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [displayedProducts, setDisplayedProducts] = useState([]);
-    const [displayPos, setDisplayPos] = useState(0);
     const tags = ["All", ...ctags];
     const [currenttags, setCurrenttags] = useState("All");
     function getWindowSize() {
@@ -43,7 +42,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
       return {innerWidth, innerHeight};
     }
     const [windowSize, setWindowSize] = useState(getWindowSize());
-    console.log(windowSize)
+
     useEffect(() => {
       function handleWindowResize() {
         
@@ -108,10 +107,10 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         <HighlightView highlights={highlights} viewProduct={viewProduct} />
       </div>
     </div>
-    <div className="rela-block page-section grey product-section">
+    <div id="products" className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="right">מוצרים<span>{currenttags !== 'All' ? `/${currenttags}` : ''}</span></h2>
+          <h2  className="right">מוצרים<span>{currenttags !== 'All' ? `/${currenttags}` : ''}</span></h2>
           <div style={{zIndex:4}} className="left category-select">
             {tags.map((c) => (
               <div key={c} className={`rela-inline category ${currenttags === c ? 'active' : ''}`} onClick={() => { setCurrenttags(c); 
@@ -147,7 +146,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     <div className="rela-block page-section new-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="right">עלינו</h2>
+          <h2 id='aboutUs' className="right">עלינו</h2>
         </div>
         <img src={leftImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img> 
         <img src={rightImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img>
@@ -156,7 +155,7 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     <div className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="right">מספרים עלינו</h2>
+          <h2 id='tellAboutUs' className="right">מספרים עלינו</h2>
         </div>
         <LoadingBall />
       </div>
@@ -165,11 +164,10 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     <div className="rela-block page-section new-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 className="right">צור קשר</h2>
+          <h2 id='contact' className="right">צור קשר</h2>
         </div>
         <ContactUs />
-        {/* <div className='right'> */}
-        <div class="right-column">
+        <div className="right-column">
         <div className='rightChild'>
           <a  href = "https://www.google.co.il/maps/place/32%C2%B036'28.1%22N+35%C2%B017'36.5%22E/@32.6078101,35.2960471,17z/data=!3m1!4b1!4m12!1m7!3m6!1s0x151c53c38bc536fb:0xb88126105c8669c7!2z16nXnNeY15kg15TXptek15XXnw!8m2!3d32.6075587!4d35.293445!16s%2Fg%2F1tcx4ch0!3m3!8m2!3d32.6078056!4d35.2934722?entry=ttu"
           >עפולה, קהילת ציון 8</a>
@@ -193,12 +191,9 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
           <a color='black'href = "mailto: shlatimafula@gmail.com"><Icon icon="simple-icons:gmail" width="30" /></a>
         </div>
         <h2>?יש לך שאלה</h2>
-        {/* </div> */}
         </div>
-    <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
-				width={"100%"} height="320"></iframe>
-        
-        {/* <LoadingBall /> */}
+    {/* <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
+				width={"100%"} height="320"></iframe> */}
       </div>
     </div>
 
@@ -210,7 +205,6 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
     </div>
   </div> 
   <div className={`product-view-container ${productViewOpen ? 'active' : ''}`}>
-    {/* <ProductView/> */}
      <FullViewComp setProductViewOpen={setProductViewOpen} setViewedProduct={setViewedProduct} viewedProduct={viewedProduct} setCart={setCart}/> 
       </div>
     </div>

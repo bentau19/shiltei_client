@@ -33,9 +33,7 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
             setLoading(false);
             setcurrent(true)
       }
-      fetchData();
-      
-        
+      fetchData();   
     },[])
 
 

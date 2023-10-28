@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { idToItem, removeItem } from '../localStorage';
+import { editItem, idToItem, removeItem, updateItem } from '../localStorage';
 import './cart.css'
 import { Icon } from '@iconify/react';
-import ItemInfoModal from '../Modal/ItemInfo/ItemInfoModal';
+import CartButton from '../CartButton/cartButton';
 
 export const ProductLine=({id, i, setTotal, onRemove})=>{
   const [product, setProduct] = useState(null);
@@ -27,6 +27,16 @@ export const ProductLine=({id, i, setTotal, onRemove})=>{
     };
     fetchProduct();
   }, [id]);
+
+  const onChangeContent=({value})=>{
+    id.content=value;
+    updateItem({id:{id},place:i});
+  }
+  const onChangeComment=({value})=>{
+    id.comment=value;
+    updateItem({id:{id},place:i});
+  }
+
   return <>
   {product&&<div key={id} className='product-line'>
             {!load?<div><div className='product-img'
@@ -42,9 +52,9 @@ export const ProductLine=({id, i, setTotal, onRemove})=>{
               </div>
             </div>
             <h3 dir="rtl" className='product-title'>{product.title}</h3>
-            <textarea dir="rtl" className='product-comment'>{id.content}</textarea>
+            <textarea dir="rtl" className='product-comment' onChange={(val)=>{onChangeContent({value:val.target.value})}} defaultValue={id.content}/>
             <Icon icon="mdi:sign"  width="25" hFlip={true} />
-            <textarea dir="rtl" className='product-comment'>{id.comment}</textarea>
+            <textarea dir="rtl" className='product-comment' onChange={(val)=>{onChangeComment({value:val.target.value})}} defaultValue={id.comment}/>
             <Icon icon="material-symbols:comment-outline"  width="25" hFlip={true} />
             <p dir="rtl" className='product-price'>מחיר: {product.price}₪</p></div>:<div dir="ltr" style={{textAlign:"left"}}><h1>LOADING...</h1></div>}
           </div>}
@@ -71,7 +81,7 @@ function onRemove(price,i) {
           <div className='bottom-bar'>
           <p>{total}₪ :סהכ לתשלום</p>
           <div disabled className='buttonC'>
-            <ItemInfoModal sum={total} items={items} setItems={setItems} handleParentClose={()=>{setCartOpen(false)}} setTotal={setTotal} />
+            <CartButton sum={total} items={items} setItems={setItems} handleParentClose={()=>{setCartOpen(false)}} setTotal={setTotal} />
           </div>
         </div>
         );
@@ -79,10 +89,6 @@ function onRemove(price,i) {
         return <div style={{textAlign:"center"}}><h1>The cart is empty</h1></div>;
       }
     }
-
-
-    
-
 
     return<div className="cart-page" style={cartOpen ? {right:"0px"} : {right:"-400px " }}>
     {(

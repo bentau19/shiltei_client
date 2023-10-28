@@ -14,9 +14,8 @@ const ManagerNavbar = ({pass}) => {
   return (
     <nav className="navbar">
       <div className="container">
-
         <div className="menu-icon" onClick={handleShowNavbar}>
-          <Hamburger />
+          <Hamburger /> 
         </div>
         <div className={`nav-elements  ${showNavbar && "active"}`}>
           <ul>

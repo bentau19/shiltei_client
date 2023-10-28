@@ -1,10 +1,6 @@
-import React, {  useState,useEffect } from 'react';
+import React, {  useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {About} from './pages/About/about';
-import { Projects } from './pages/Projects/projects';
-import {Contact} from './pages/Contact/contact';
-import ItemDetail from './productPage/product_page';
 import {Route,Routes,BrowserRouter } from "react-router-dom";
 import { ManagerLogin } from './ManagerScreen/main/login';
 import { ManagerHome } from './ManagerScreen/HomeScreen/home';
@@ -29,22 +25,16 @@ function App(){
 
   return (
         <div>
-            {/* <App2/> */}
               <NavigationProvider>
           <BrowserRouter>
           {loading?<div/>:<NavBarSwitcher items={items} setCart={setItems} pass={pass} setMenuOpen={setMenuOpen} menuOpen={menuOpen} />}  
           <Routes>
             <Route exact path="/" element={
-            // <Home setItems={setItems}/>
             <LoadingPage menuOpen={menuOpen} setLoading={setLoading} setCart={setItems} />
             } />
-            <Route path="/projects" element={<Projects/>} />
-            <Route path="/about" element={<About/>} />
-            <Route path="/contact" element={<Contact/>} />
             <Route path="/managerLogin" element={<ManagerLogin setPass={setPass} />} />
             <Route path="/managerHome" element={<ManagerHome/>} />
             <Route path="/managerSells" element={<SellScreen/>} />
-            <Route path="/product/:title" element={<ItemDetail />} />
             <Route path="/accaptance/:id/:tradeNumber" element={<Accaptance />} />
           </Routes>
           </BrowserRouter>

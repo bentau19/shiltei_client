@@ -40,19 +40,7 @@ function ShipModel({handleSend}) {
     const handleOpen = () =>{
       handleSend(ship,nameRef.current.value,emailRef.current.value);
     };
-
-    // const handleOpen = () =>{
-    //   if(checked){
-    //     if(nameRef.current.value!==""&&emailRef.current.value!=="")
-    //       setOpen(true);
-    //     else
-    //     alert("Please fill Email and Name.");
-    //   }else{
-    //   setShip(createShip())
-    //   if (ship!=="e")
-    //   setOpen(true);
-    // }
-    // };
+    
     const handleClose = () =>{
       setOpen(false);};
     return<div>

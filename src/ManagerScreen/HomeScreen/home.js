@@ -65,8 +65,6 @@ export function ManagerHome() {
     const getTags=()=>{
       Axios.post(getServerId()+"/get-tags", {
       }).then((res) => {
-        // let d = [...res.data]
-        // d.reverse()
         console.log(res.data);
         setTags(res.data);  
       })
