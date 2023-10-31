@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { editItem, idToItem, removeItem, updateItem } from '../localStorage';
+import { editItem, idToItem, removeItem, updateItem } from '../../localStorage';
 import './cart.css'
 import { Icon } from '@iconify/react';
-import CartButton from '../CartButton/cartButton';
+import CartButton from '../../CartButton/cartButton';
 
 export const ProductLine=({id, i, setTotal, onRemove})=>{
   const [product, setProduct] = useState(null);

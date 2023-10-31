@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../pages/Home/testHome.css';
 import './designedNavBar.css';
-import { Cart } from "../Cart/cart";
+import { Cart } from "./Cart/cart";
 import { LeftBar } from "../pages/LeftBar/leftBar";
 export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
     const [cartOpen, setCartOpen] = useState(false);
