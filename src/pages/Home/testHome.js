@@ -1,17 +1,18 @@
 import React, { useState, useEffect  } from 'react';
 import './testHome.css';
 import LoadingBall from '../../loadingBall/loadingBall';
-import {HighlightView} from './higlighted'
-import { ProductComp } from './HomeComp/ProductComp';
-import { FullViewComp } from './HomeComp/fullViewComp';
+import {HighlightView} from '../Highlight/higlighted'
+import { ProductComp } from './ProductComp';
+import { FullViewComp } from '../FullProductView/fullViewComp';
 import { NavLink } from 'react-router-dom';
-import rightImg from './aboutUsRight.png';
-import leftImg from './aboutUsLeft.png';
-import { Icon } from '@iconify/react';
-import ContactUs from './contectUs/contact';
-import { getProducts } from '../../serverReq';
 
-const App2=({menuOpen,items,highlights,setCart,ctags})=> {
+import { Icon } from '@iconify/react';
+import ContactUs from '../ContectUs/contact';
+import { getProducts } from '../../serverReq';
+import { AboutUs } from '../AboutUs/aboutUs';
+import { TellAboutUS } from '../TellAboutUs/tellAboutUs';
+
+const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
     // const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
     const [isEnd, setIsEnd] = useState(false);
@@ -142,23 +143,15 @@ const App2=({menuOpen,items,highlights,setCart,ctags})=> {
         )}
       </div>
     </div>
-
-    <div className="rela-block page-section new-section">
-      <div className="rela-block gutter-container">
-        <div className="rela-block section-nav">
-          <h2 id='aboutUs' className="right">עלינו</h2>
-        </div>
-        <img src={leftImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img> 
-        <img src={rightImg} style={{paddingLeft:"auto"}} alt="shiltei" width={windowSize.innerWidth>850?"50%":"100%"}></img>
-      </div>
-    </div>
+    <AboutUs windowSize={windowSize}/>
     <div className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
-        <div className="rela-block section-nav">
+        {/* <div className="rela-block section-nav"> */}
           <h2 id='tellAboutUs' className="right">מספרים עלינו</h2>
         </div>
-        <LoadingBall />
-      </div>
+        <TellAboutUS reviews={reviews}/>
+        {/* <LoadingBall /> */}
+      {/* </div> */}
     </div>
 
     <div className="rela-block page-section new-section">

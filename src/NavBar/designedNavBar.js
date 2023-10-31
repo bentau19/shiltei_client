@@ -2,28 +2,16 @@ import { useState } from "react";
 import '../pages/Home/testHome.css';
 import './designedNavBar.css';
 import { Cart } from "../Cart/cart";
+import { LeftBar } from "../pages/LeftBar/leftBar";
 export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
     const [cartOpen, setCartOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [searchInput] = useState("");
 
-    const scrollToPlace= async (location) => {
-        setMenuOpen(false)
-        await new Promise((resolve) => setTimeout(resolve, 250));
-          window.location.href = location;
-      }
-    
 
-
+  
     return <div id="app">
-          <div className="menu">
-  <p  onClick={async (e) => {scrollToPlace("#products")}} className="rela-block">מוצרים</p>
-
-    <p onClick={async (e) => {scrollToPlace("#aboutUs")}} className="rela-block">עלינו</p>
-    <p onClick={async (e) => {scrollToPlace("#tellAboutUs")}} className="rela-block">מספרים עלינו</p>
-    <p onClick={async (e) => {scrollToPlace("#contact")}} className="rela-block">צור קשר</p>
-  </div>
-
+      <LeftBar setMenuOpen={setMenuOpen}/>
     <div  className={`rela-block nav-bar ${menuOpen ? 'shifted' : ''}`}>
       <div className="rela-block gutter-container inner-nav-container">
         <div className={`nav-flip top ${searchOpen ? 'active' : ''}`}>

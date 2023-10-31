@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { addItems } from '../../../localStorage';
-import '../testHome.css'
+import { addItems } from '../../localStorage';
+import '../Home/testHome.css'
 import './fullView.css'
-import { ProductComp } from './ProductComp';
-import { getProducts } from '../../../serverReq';
+import { ProductComp } from '../Home/ProductComp';
+import { getProducts } from '../../serverReq';
 
 export const FullViewComp = ({setProductViewOpen,viewedProduct,setCart,setViewedProduct}) => {
   const [displayedProducts, setDisplayedProducts] = useState([]);

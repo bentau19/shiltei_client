@@ -13,7 +13,7 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
     const [current,setcurrent] = useState(false)
     const { toggleNavigationBar } = useNavigationContext();
     const [tags,setTags]=useState([])
-    
+    const [reviews,setReviews]=useState([])
     useEffect( ()=>{
       const fetchData = async () => {
         toggleNavigationBar("client");
@@ -23,6 +23,10 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
           setTags(res.data)
         }
         )
+        Axios.post(getServerId()+"/get-reviews",{
+        }).then((res)=>{
+          setReviews(res.data)
+        })
             const data =await getProducts({}) ;
             const highlightItems = data.filter((product) => product.highlight === true);
             const regularItems = data.filter((product) => product.highlight === false);
@@ -39,7 +43,7 @@ const LoadingPage=({setLoading,menuOpen,setCart})=>{
 
 
 
-    return current?<App2 ctags={tags}  menuOpen={menuOpen} highlights={highlights} items={items} setCart={setCart}/>:
+    return current?<App2 reviews={reviews} ctags={tags}  menuOpen={menuOpen} highlights={highlights} items={items} setCart={setCart}/>:
     <div className="store-container">
       <img src={ReactLogo} style={{paddingLeft:"70px", margin:"auto",  display: "block",
   }} alt="shiltei" width={"250"}></img>

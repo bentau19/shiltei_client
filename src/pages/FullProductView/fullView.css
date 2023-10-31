@@ -1,11 +1,4 @@
-/*general color variables*/
-/*general length variables*/
-/*breakpoint variables*/
-/*not used*/
-/*not used*/
-/*not used*/
-/*not used*/
-/*general rules for normalization*/
+
 *:before, *:after {
     box-sizing: border-box;
 }
@@ -234,7 +227,6 @@
 	 color: var(--greyDark);
 }
  .form__input::placeholder {
-
 	 color: var(--greyLight-3);
 }
  .form__input:focus {

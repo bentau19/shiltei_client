@@ -18,6 +18,11 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
+  .pointer{
+    cursor: pointer; 
+  }
+
   .rela-block {
     box-sizing: border-box;
     display: block;
@@ -73,17 +78,7 @@
     text-transform: uppercase;
     margin-bottom: 15px;
   }
-  .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 300px;
-    background-color: #e6e6e6;
-    text-align: center;
-    padding: 20px;
-  
-  }
+
   .page-container {
     z-index: 2;
     position: absolute;
@@ -108,6 +103,7 @@
   }
 
   .top-one{
+    
     overflow-x: hidden;
     overflow: "hidden";
   }
@@ -148,7 +144,7 @@
   }
   
   .page-section.grey {
-    background-image: url('./nave_muzar.png'); 
+    background-image: url('./background.png'); 
     background-color: #f4f4f4;
   }
 

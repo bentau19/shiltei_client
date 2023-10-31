@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ContactUs.css'; // Import your CSS file for styling
 import Axios from 'axios';
-import { getServerId } from '../../../localStorage';
+import { getServerId } from '../../localStorage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -61,6 +61,7 @@ function ContactUs() {
   };
 
   return (
+    <>
     <div dir='rtl' style={{marginBottom:"20px", marginTop:"-20px",width:"60%",float: "left"}} className="contact-us-container">
       <form onSubmit={handleSubmit}>
         <div className="contact-us-form-group">
@@ -142,6 +143,10 @@ function ContactUs() {
   theme="light"
   />
     </div>
+    
+    
+    
+    </>
   );
 }
 
