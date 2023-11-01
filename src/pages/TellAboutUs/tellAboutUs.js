@@ -123,7 +123,7 @@ export const TellAboutUS=({reviews})=>{
 
             reviews.map((review,i)=>{
               return <SwiperSlide key={i} className="swiper-slide1" >
-                <CardView review={review}  />
+                <CardView key={i} review={review}  />
               </SwiperSlide>
             })
             }

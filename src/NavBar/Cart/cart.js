@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { editItem, idToItem, removeItem, updateItem } from '../../localStorage';
+import {idToItem, removeItem, updateItem } from '../../localStorage';
 import './cart.css'
 import { Icon } from '@iconify/react';
 import CartButton from '../../CartButton/cartButton';
