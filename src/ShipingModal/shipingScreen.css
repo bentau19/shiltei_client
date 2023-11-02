@@ -11,9 +11,168 @@
 }
 
 div.cont2{
+    font-size: 28px;
+    padding:20px;
+  }
 
+
+  .form__group {
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    padding: 20px 0 0;
+    width: 100%;
+    max-width: 180px;
+  }
+  
+  .form__field {
+    
+    font-family: inherit;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 28px;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+    
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    
+    font-size: 28px;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 28px;
+    color: #9b9b9b;
+    pointer-events: none;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #116399, #38caef);
+    border-image-slice: 1;
+  }
+  
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 28px;
+    color: #38caef;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+
+
+ 
+
+  .button-29 {
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 200px;
+    padding-right: 200px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 25px;
+  }
+  
+  .button-29:focus {
+    box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  }
+  
+  .button-29:hover {
+    box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    transform: translateY(-2px);
+  }
+  
+  .button-29:active {
+    box-shadow: #3c4fe0 0 3px 7px inset;
+    transform: translateY(2px);
+  }
+
+  .toggleInput[type=checkbox]{
+    content: "yes";
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+
+  
+  .toggleLabel {
+    
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 75px;
+    height: 35px;
+    background: grey;
+    display: block;
+    border-radius: 40px;
+    position: relative;
+  }
+  
+  .toggleLabel:after {
+    content: '';
+    position: absolute;
+    top: 2.2px;
+    left: 3px;
+    width: 30px;
     height: 30px;
-    font-size: 20px;
-    padding:40px;
-    position:left;
+    background: #fff;
+    border-radius: 30px;
+    transition: 0.3s;
+  }
+  
+  .toggleInput:checked + label {
+    background: #bada55;
+  }
+  
+  .toggleInput:checked + label:after {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+  }
+  
+  .toggleLabel:active:after {
+    width: 40px;
   }

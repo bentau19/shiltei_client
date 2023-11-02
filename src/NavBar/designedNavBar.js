@@ -1,6 +1,7 @@
 import { useState } from "react";
 import '../pages/Home/testHome.css';
 import './designedNavBar.css';
+import logo from"./shiltei.ico"
 import { Cart } from "./Cart/cart";
 import { LeftBar } from "../pages/LeftBar/leftBar";
 export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
@@ -32,7 +33,9 @@ export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
             </svg>
           </div>
         </div>
-        <div className={`nav-flip bottom ${searchOpen ? 'active' : ''}`}>
+        <img className="navbar_img" src={logo} alt="shiltei" height={"50px"}></img> 
+        {/* <div className="rela-block product-pic" style={{ 'background': `url(${info.picture}) center no-repeat` }}/> */}
+        {/* <div className={`nav-flip bottom ${searchOpen ? 'active' : ''}`}>
           <input value={searchInput} onChange={()=>{}} type="text" placeholder="Search here..." className="search-bar" />
         </div>
         <div className="vert-center ui-icon search-button" onClick={() => setSearchOpen(!searchOpen)}>
@@ -40,7 +43,7 @@ export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
             <circle cx={20} cy={22} r={12} />
             <path d="M 31 32 L 39 40" />
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
     <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} items={items} setItems={setItems}/>

@@ -36,7 +36,7 @@ html {
     position: absolute;
     height: 100%;
     left: 40px;
-    right: 80px;
+    right: 125px;
     overflow: hidden;
     border-right: 1px solid #e6e6e6;
   }
@@ -76,34 +76,7 @@ html {
   .ui-icon.active .button-svg {
     stroke: #333;
   }
-  .search-button {
-    right: 40px;
-  }
-  .search-bar {
-    background-color: transparent;
-    height: 100%;
-    width: 100%;
-    font-family: 'Open Sans', Helvetica, sans-serif;
-    font-size: 20px;
-    padding: 0 15px;
-    color: #333;
-    border: 1px solid rgba(255,255,255,0);
-    border-right: 0px;
-  }
-  .search-bar:focus {
-    border: 1px solid #e6e6e6;
-    border-right: 0px;
-    outline: none;
-  }
-  .search-bar::-moz-placeholder {
-    color: #d1d1d1;
-  }
-  .search-bar:-ms-input-placeholder {
-    color: #d1d1d1;
-  }
-  .search-bar::placeholder {
-    color: #d1d1d1;
-  }
+
   .icon-split {
     vertical-align: middle;
     height: 40px;
@@ -121,6 +94,15 @@ html {
     fill: none;
   }  
   .nav-bar.shifted {
-    
     left: 300px;
+  }
+
+  .navbar_img{
+    position:absolute;
+    right:10px;
+    top:0px;
+    height: 40px;
+    z-index: 100000;
+    background-color: #fff;
+    overflow: visible;
   }

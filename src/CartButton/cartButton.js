@@ -14,6 +14,7 @@ function CartButton({sum,items,setItems,handleParentClose,setTotal}) {
       const handleSend = (ship,name,email) =>{
         console.log(name)
         setOpen(false);
+        console.log(ship)
         fetch('https://api.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {sendBuy(data.ip,ship,name,email)})

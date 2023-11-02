@@ -1,0 +1,41 @@
+.Row {
+    display: table;
+    width: 100%;  
+    border-spacing: 8px; 
+}
+.Column {
+    display: table-cell;
+}
+.search-bar1 { 
+    margin: auto;
+}
+  
+  .search-bar1 input {
+    height: "30px";
+    width: 100%;    
+    background-color: transparent;
+     border: none; 
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    font-weight: 600;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 15px 50%;
+    color: #3d4954;
+    font-family: "Roboto", sans-serif;
+  }
+  
+.tags_container{
+    width: 100px;
+}
+.category {
+    margin-left: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #b2b2b2;
+  }
+  .category:hover,
+  .category.active {
+    color: #333;
+  }

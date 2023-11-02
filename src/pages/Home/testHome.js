@@ -1,43 +1,22 @@
 import React, { useState, useEffect  } from 'react';
 import './testHome.css';
-import LoadingBall from '../../loadingBall/loadingBall';
 import {HighlightView} from '../Highlight/higlighted'
-import { ProductComp } from './ProductComp';
 import { FullViewComp } from '../FullProductView/fullViewComp';
 import { NavLink } from 'react-router-dom';
-
 import { Icon } from '@iconify/react';
 import ContactUs from '../ContectUs/contact';
-import { getProducts } from '../../serverReq';
 import { AboutUs } from '../AboutUs/aboutUs';
 import { TellAboutUS } from '../TellAboutUs/tellAboutUs';
+import { Products } from '../Products/products';
 
 const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
-    // const [currentViewedProduct, setCurrentViewedProduct] = useState(0);
-    const [isEnd, setIsEnd] = useState(false);
-    const [search, setSearch] = useState("");
     const [viewedProduct, setViewedProduct] = useState({});
-    // const [newItems, setNewItems] = useState([]);
-    // const [newItemPos, setNewItemPos] = useState(0);
-     const [products, setProducts] = useState([
-        {
-            id: -1,
-            name: "Test",
-            artist: "Test",
-            desc: "",
-            cost: 0,
-            tags: "Test",
-            img: "https://picsum.photos/600/?random",
-            date: "0"
-        },
-      // Rest of your products
-    ]);
-
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const [displayedProducts, setDisplayedProducts] = useState([]);
     const tags = ["All", ...ctags];
-    const [currenttags, setCurrenttags] = useState("All");
+    const viewProduct = (product) => {
+      setViewedProduct(product);
+      setProductViewOpen(true);
+    };
     function getWindowSize() {
       const {innerWidth, innerHeight} = window;
       return {innerWidth, innerHeight};
@@ -46,60 +25,14 @@ const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
 
     useEffect(() => {
       function handleWindowResize() {
-        
         setWindowSize(getWindowSize());
       }
-  
       window.addEventListener('resize', handleWindowResize);
-  
       return () => {
         window.removeEventListener('resize', handleWindowResize);
       };
     }, []);
-    useEffect(() => {
-    // setDisplayedProducts([...items])
-      init();
-    }, []);
 
-
-    useEffect(() => {
-      // updateDisplayedProducts();
-    }, [filteredProducts]); 
-  
-    const init = () => {
-      setDisplayedProducts([...items]);
-      // updateNewItems();
-      // updateFilteredProducts();
-      // addDisplayedProducts();
-    };
-
-
-    const endCheck=(temp)=>{
-      if(temp.length%12==0 &&temp.length!==0){
-        setIsEnd(false)
-      }else{
-        setIsEnd(true)
-      }
-    }
-
-
-    const addDisplayedProducts = async({title="",tag="",reset=false}) => {
-      if (reset){
-        let temp = await getProducts({skip:0,title:title,tags:tag})
-        endCheck(temp)
-        setDisplayedProducts([...temp])
-      }else{
-      let temp = await getProducts({skip:displayedProducts.length,title:title,tags:tag})
-      endCheck(temp)
-      setDisplayedProducts((pro)=>[ ...pro,...temp])
-      }
-    }
- 
-  
-    const viewProduct = (product) => {
-      setViewedProduct(product);
-      setProductViewOpen(true);
-    };
 
   return <div id="app">
   <div className={`rela-block page-container ${menuOpen ? 'shifted' : ''}`}>
@@ -108,50 +41,13 @@ const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
         <HighlightView highlights={highlights} viewProduct={viewProduct} />
       </div>
     </div>
-    <div id="products" className="rela-block page-section grey product-section">
-      <div className="rela-block gutter-container">
-        <div className="rela-block section-nav">
-          <h2  className="right">מוצרים<span>{currenttags !== 'All' ? `/${currenttags}` : ''}</span></h2>
-          <div style={{zIndex:4}} className="left category-select">
-            {tags.map((c) => (
-              <div key={c} className={`rela-inline category ${currenttags === c ? 'active' : ''}`} onClick={() => { setCurrenttags(c); 
-                addDisplayedProducts({tag:c,reset:true})
-              }}>{c}</div>
-            ))}
-          </div>
-          <div style={{left:"150px"}} className="center search-bar1">
-          <input type="text" dir="rtl" placeholder="חפש שלט" onChange={(data)=>{setSearch(data);addDisplayedProducts({title:data.target.value,tag:currenttags,reset:true});}}/>
-        </div>
-        </div>
-        <div className="rela-block product-item-container">
-          {displayedProducts.map((item, index) => (
-            <ProductComp key={index} info={item} view={viewProduct}  />
-          ))}
-        </div>
-        {!isEnd && (
-          <div className="rela-block load-button"
-          style={{top:"20px"}}>
-            <div className="rela-inline load-button-container" 
-             onClick={()=>{addDisplayedProducts({tag:currenttags})}}
-            >
-              <p>טען עוד</p>
-              <svg viewBox="0 0 50 50" className="button-svg">
-                <path />
-              </svg>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+    <Products items={items} viewProduct={viewProduct} tags={tags}/>
     <AboutUs windowSize={windowSize}/>
     <div className="rela-block page-section grey product-section">
       <div className="rela-block gutter-container">
-        {/* <div className="rela-block section-nav"> */}
           <h2 id='tellAboutUs' className="right">מספרים עלינו</h2>
         </div>
         <TellAboutUS reviews={reviews}/>
-        {/* <LoadingBall /> */}
-      {/* </div> */}
     </div>
 
     <div className="rela-block page-section new-section">

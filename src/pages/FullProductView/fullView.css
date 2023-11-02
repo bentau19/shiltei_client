@@ -135,10 +135,7 @@
     border: #53a7c0 1px solid;
     font-weight: 600;
 }
-.onb-color-picker {
-   /*radio color variables*/
-   /* TODO: space-between does not look good when wrapping to next row */
-}
+
 .onb-color-picker--title {
     color: #848c96;
     text-transform: uppercase;

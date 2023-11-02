@@ -1,6 +1,28 @@
-* {
-
+ * {
     transition: 0.3s cubic-bezier(0.6, 0, 0.2, 1);
+  } 
+  body {
+    transition: 0s;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+  h2 {
+    margin: 0;
+    color: #b2b2b2;
+    font-size: 32px;
+    font-family: 'Comfortaa', Helvetica, sans-serif;
+    margin-bottom: 20px;
+  }
+  h3 {
+    margin: 0;
+    text-transform: uppercase;
+    margin-bottom: 15px;
   }
   .abs-center {
     position: absolute;
@@ -46,6 +68,15 @@
     right: 0px;
     /* display: flex; */
   }
+  .parent {
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+  }
+  .child {
+    display: inline-block;
+    padding: 1rem 1rem;
+  }
   .right-column {
     display: flex;
     flex-direction: column-reverse; /* Stack elements vertically and start from the right */
@@ -65,19 +96,17 @@
     font-family: 'Open Sans', Helvetica, sans-serif;
     overflow-x: hidden;
   }
-  p {
+  /* p {
     margin-bottom: 5px;
-  }
+  } */
   h2 {
     color: #b2b2b2;
     font-size: 32px;
     font-family: 'Comfortaa', Helvetica, sans-serif;
-    margin-bottom: 20px;
   }
   h3 {
     text-transform: uppercase;
-    margin-bottom: 15px;
-  }
+  } 
 
   .page-container {
     z-index: 2;
@@ -96,14 +125,10 @@
 
   .gutter-container {
     padding: 0 40px;
-    
- 
-    /* max-width: 1200px; */
     margin: auto;
   }
 
   .top-one{
-    
     overflow-x: hidden;
     overflow: "hidden";
   }
@@ -115,33 +140,7 @@
     padding: 30px 0;
     background-color: #fff;
   }
-  .search-bar1 {
-/* padding: 15px; */
-    padding-left:30px ;
-     /* position:static;  */
-  }
-  
-  .search-bar1 input {
-    height: "30px";
-    width: 60%; 
-    /* sdisplay: block; */
-    background-color: transparent;
-     border: none; 
-    border-bottom: 1px solid black;
-    font-size: 20px;
-    font-weight: 600;
-    padding: 0 10px 0 40px;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-size: 15px;
-    background-position: 15px 50%;
-    color: #3d4954;
-    font-family: "Roboto", sans-serif;
-  }
-  
-  .search-bar1 input::placeholder {
-    /* color: #ccd0d2; */
-  }
+ 
   
   .page-section.grey {
     background-image: url('./background.png'); 
@@ -275,15 +274,6 @@
     font-size: 13px;
     color: #b2b2b2;
   }
-  .category {
-    margin-left: 10px;
-    cursor: pointer;
-    color: #b2b2b2;
-  }
-  .category:hover,
-  .category.active {
-    color: #333;
-  }
   .load-button {
     text-align: center;
   }
@@ -398,7 +388,6 @@
   .btn{
     margin: auto;
     width: 50%;
-    /* width: 15em; */
     height: 4em;
     border-radius: 1em;
     box-shadow: 0.3em 0.3em 0.6em  #c8d0e7, -0.2em -0.2em 0.5em #FFFFFF;

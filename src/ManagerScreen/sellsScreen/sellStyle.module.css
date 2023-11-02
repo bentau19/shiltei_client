@@ -1,15 +1,10 @@
 
-
-   /* sellStyle.module.css */
 .sellTableFill {
   background: white;
   border-radius: 3px;
   border-collapse: collapse;
-  /* height: 320px; */
   margin-left: 30px;
   max-width: 50%;
-  
-  /* padding: 5px; */
   width: 50%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;

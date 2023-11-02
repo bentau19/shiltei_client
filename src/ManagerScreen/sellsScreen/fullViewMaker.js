@@ -5,10 +5,10 @@ import { getServerId } from '../../localStorage';
 import Axios from 'axios';
 export const FullViewMaker=(items,order,setOrder,pass)=>{
   const stage =["חדש!","נקרא","ייצור","אריזה","משלוח","הגיע"]
-    const addStage=()=>{
+  console.log(items)  
+  const addStage=()=>{
       console.log("addStage!")
       if(order.stage<6){
-        
       Axios.post(getServerId()+"/update-sells",
       {params:{
         pass:pass,
@@ -84,7 +84,7 @@ export const FullViewMaker=(items,order,setOrder,pass)=>{
           <td>{item.id.makat}</td>
           <td>{item.id.size}</td>
           <td>{item.content}</td>
-          <td>{item.comments}</td>
+          <td>{item.comment}</td>
         </tr>
             ))}
         </tbody>
