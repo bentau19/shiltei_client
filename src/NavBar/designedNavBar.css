@@ -59,7 +59,7 @@ html {
   .logo {
     padding: 0 10px;
     color: #d1d1d1;
-    font-size: 32px;
+    font-size: 20px;
     font-family: 'Comfortaa', Helvetica, sans-serif;
     cursor: default;
   }
@@ -111,8 +111,8 @@ html {
 .logo{
   font-size: 26px;
 }}
-@media screen and (max-width: 350px) {
+@media screen and (min-width: 550px) {
   .logo{
-    font-size: 12px;
+    font-size: 32px;
   }
 }
