@@ -107,14 +107,15 @@ html {
     overflow: visible;
   }
 
-   @media screen and (max-width: 350px) {
-.logo{
-  font-size: 13px;
-}}
-/* @media screen and (max-width: 550px) {
+
+@media screen and ( max-width: 550px) and(min-width:350px) {
   .logo{
     font-size: 24px;
-  }} */
+  }}
+  @media screen and (max-width: 300px) {
+    .logo{
+      font-size: 13px;
+    }}
 @media screen and (min-width: 550px) {
   .logo{
     font-size: 32px;
