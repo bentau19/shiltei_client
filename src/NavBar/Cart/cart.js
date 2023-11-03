@@ -79,7 +79,8 @@ function onRemove(price,i) {
       if (total !== 0) {
         return (
           <div className='bottom-bar'>
-          <p>{total}₪ :סהכ לתשלום</p>
+            <hr/>
+          <p style={{fontSize:"20px"}}>{total}₪ :סהכ לתשלום</p>
           <div disabled className='buttonC'>
             <CartButton sum={total} items={items} setItems={setItems} handleParentClose={()=>{setCartOpen(false)}} setTotal={setTotal} />
           </div>

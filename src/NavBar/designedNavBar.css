@@ -106,3 +106,9 @@ html {
     background-color: #fff;
     overflow: visible;
   }
+
+  @media screen and (max-width: 550px) {
+.logo{
+  font-size: 26px;
+}
+}

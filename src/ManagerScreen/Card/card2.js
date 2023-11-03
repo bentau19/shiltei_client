@@ -100,7 +100,6 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
     </div>
     tags:
     <Dropdown
-        
         isSearchable
         isMulti
         placeHolder="Select..."
@@ -110,7 +109,11 @@ const Card=({updateTags,product,last,deleteItem,handleSend,setGlobaltags,globalt
         tags = {tags}
         updateTags={updateTags}
       />
-
+      {
+        product.sellCount?<div style={{fontSize:"24px"}}>
+        sell count: {product.sellCount}
+        </div>:<div style={{fontSize:"24px"}}>sell count: 0</div>
+      }
       <button onClick={haundleSave} style={{height:"30px",width:"70px",marginTop:"10px",marginBottom:"10px"}}>{buttonValue}</button>
     </div>);
 }

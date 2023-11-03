@@ -10,9 +10,9 @@ import "./highlighted.css";
 import { Pagination, Navigation,Autoplay } from "swiper/modules";
 import { useEffect, useState } from 'react';
 
-const colors = ["#fbadaf","#a4e0eb","#edb9d6","#fdca95","#cbb5e2"]
+const colors = ["#fbadaf","#a4e0eb","#edb9d6","#fdca95"]
 
-export const CardView =({product,viewProduct})=>{
+export const CardView =({product,viewProduct,color})=>{
     return <div style={{width:"100%"}}>
         <div className="book-img" onClick={()=>viewProduct(product)} style={{display:"inline"}}>
             <img
@@ -33,8 +33,9 @@ export const CardView =({product,viewProduct})=>{
   {product.size}
   {" "}
  </div>
- <div onClick={()=>viewProduct(product)} className="book-see">
-  Preview</div>
+ <div onClick={()=>viewProduct(product)} style={{color:color}}  className="book-see">
+  <div className="button_text">תצוגה מקדימה</div>
+  </div>
 </div>
 </div>
 </div>
@@ -88,8 +89,9 @@ export const HighlightView=({highlights,viewProduct})=>{
             {
 
             highlights.map((product,i)=>{
-              return <SwiperSlide key={i} className='mainCard' style={{backgroundColor:colors[i%6]}} >
-                <CardView product={product} viewProduct={viewProduct} />
+              let color = colors[i%5];
+              return <SwiperSlide key={i} className='mainCard' style={{backgroundColor:color}} >
+                <CardView product={product} color={color} viewProduct={viewProduct} />
               </SwiperSlide>
             })
             }

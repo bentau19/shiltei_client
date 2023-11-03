@@ -1,5 +1,5 @@
 .mainCard{
-    background-color:green;
+    background-color:#cbb5e2;
      height:250px;
      width:500px;
 }
@@ -138,7 +138,7 @@
      margin-top: 25px;
      text-align: center;
      background-color: #fff;
-     color: #fbadaf;
+     color: #cbb5e2;
      font-weight: 600;
      padding: 8px;
      font-size: 14px;
@@ -146,12 +146,9 @@
      border-radius: 20px;
    }
    
-   .book-see:hover {
-     color: #ff6e72;
-   }
-   
-   .book-see.book-blue {
-     color: #a4e0eb;
+   .book-see:hover .button_text{
+    cursor: pointer;
+     filter:  brightness(85%);
    }
    
    

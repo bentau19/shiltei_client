@@ -9,14 +9,20 @@
 .search-bar1 { 
     margin: auto;
 }
+
+
+.proComp_contain_div{
+  margin-bottom:25px;
+  display: block;
+  text-align: center; 
+}
   
   .search-bar1 input {
-    height: "30px";
     width: 100%;    
     background-color: transparent;
      border: none; 
     border-bottom: 1px solid black;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -31,7 +37,7 @@
 }
 .category {
     margin-left: 10px;
-    font-size: 25px;
+    font-size: 22px;
     cursor: pointer;
     color: #b2b2b2;
   }

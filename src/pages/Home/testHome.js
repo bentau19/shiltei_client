@@ -12,7 +12,7 @@ import { Products } from '../Products/products';
 const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
     const [productViewOpen, setProductViewOpen] = useState(false);
     const [viewedProduct, setViewedProduct] = useState({});
-    const tags = ["All", ...ctags];
+    const tags = ["הכל", ...ctags];
     const viewProduct = (product) => {
       setViewedProduct(product);
       setProductViewOpen(true);

@@ -54,12 +54,12 @@ function CartButton({sum,items,setItems,handleParentClose,setTotal}) {
           )
     }
     return<div>
-    <button onClick={handleOpen}>מעבר לתשלום</button>
+    <button className='send_button' onClick={handleOpen}>מעבר לתשלום</button>
     <Modal 
       open={open}
       onClose={handleClose}
     >
-     <div><ShipModel handleSend={handleSend}/></div> 
+     <div><ShipModel handleSend={handleSend} handleParentClose={setOpen} /></div> 
     </Modal></div>
 }
 

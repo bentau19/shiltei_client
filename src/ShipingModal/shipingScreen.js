@@ -2,10 +2,10 @@ import {useRef,useState} from 'react';
 // import CreditCardView from '../CreditCard/index';
 import Modal from '@mui/material/Modal';
 import './shipingScreen.css'
-import ReactSwitch from 'react-switch';
 
+import { Icon } from '@iconify/react';
 
-function ShipModel({handleSend}) {
+function ShipModel({handleSend,handleParentClose}) {
     const [open, setOpen] = useState(false);
     const [checked, setChecked] = useState(false);
     const houseRef=useRef("");
@@ -55,10 +55,11 @@ function ShipModel({handleSend}) {
     };
     
     const handleClose = () =>{
-      setOpen(false);};
+      handleParentClose(false);};
     return<div>
             <div className='main2'>
-                <h1 style={{ textDecoration: "underline"  }}>SHIPPING</h1>
+            <Icon  className='exit-button'  width="32" onClick={() => handleClose()} icon="carbon:close-outline" /> 
+                <h1 style={{ textDecoration: "underline"  }}>פרטים ומשלוח</h1>
   <div dir="rtl">
     <h3 style={{display:"inline-block", paddingLeft:"15px",margin:"0"}}>איסוף עצמי - </h3> 
     <div style={{display:"inline-block"}}>

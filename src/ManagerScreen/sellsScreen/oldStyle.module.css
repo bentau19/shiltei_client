@@ -26,9 +26,10 @@ h3.subtitle{
 
 .mainContainer{
   margin-top: 40px;
+  margin-left: 40px;
   text-align: center;
-  height: 800px;
-  width: 700px;
+  max-width: 700px;
+  padding: 10px;
   background-color:aliceblue;
   border-color:#333;
   border-style: solid;

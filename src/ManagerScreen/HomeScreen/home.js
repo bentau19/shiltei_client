@@ -174,7 +174,7 @@ export function ManagerHome() {
         <h2 style={{textAlign:"center"}} >search:</h2>
         <input style={{margin:"auto",display:"block"}} onChange={(res)=>searchCards(res.target.value)} />
       <div className='Row'>
-        <Card updateTags={updateTags} handleSend = {handleSend} deleteItem = {deleteItem} globaltags={tags} product={new Product("","","/","","",[],false,0)} setGlobaltags={setTags} last = {true} /> 
+        <Card updateTags={updateTags} handleSend = {handleSend} deleteItem = {deleteItem} globaltags={tags} product={new Product("","","/","","","",[],false,0)} setGlobaltags={setTags} last = {true} /> 
         {
           products.map((product,i)=>{
             return <div style={{display:"inline-block"}} key={product._id}> 
