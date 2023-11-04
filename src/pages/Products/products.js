@@ -101,7 +101,7 @@ export const Products =({tags,viewProduct,items})=>{
     setCurrenttags={setCurrenttags} 
     addDisplayedProducts={addDisplayedProducts}/>
     </div>
-    <div className='div_center'>
+    <div >
     <ShowProducts  displayedProducts={displayedProducts} viewProduct={viewProduct}/>
     </div>
     {!isEnd && 

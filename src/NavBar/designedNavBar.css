@@ -112,10 +112,10 @@ html {
   .logo{
     font-size: 24px;
   }}
-  @media screen and (max-width: 300px) {
-    .logo{
-      font-size: 13px;
-    }}
+
+  
+
+  
 @media screen and (min-width: 550px) {
   .logo{
     font-size: 32px;

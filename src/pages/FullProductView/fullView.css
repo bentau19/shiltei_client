@@ -5,12 +5,7 @@
 .svg-sprite {
     display: none;
 }
-@media screen and (min-width: 90em) {
-    .onb-main {
-        width: 90em;
-        margin: 0 auto;
-   }
-}
+
 /*rules for layout and reusable components*/
 .onb-product-view {
     padding: 1em;
@@ -19,12 +14,7 @@
     display: flex;
     width: 90%;
 }
-@media screen and (min-width: 64em) {
-    .onb-product-view--image-slider {
-        width: 40%;
-        float: left;
-   }
-}
+
 .onb-product-view--details-box {
     width: 90%;
     margin-bottom: 4em;
@@ -91,16 +81,13 @@
 }
 .onb-image-slider--image {
     max-width: 90%;
+    aspect-ratio: 200 /240;
 }
 .onb-aside-wrapper {
     width: 90%;
 }
-@media screen and (min-width: 64em) {
-    .onb-aside-wrapper {
-        width: 60%;
-        float: right;
-   }
-}
+
+
 .onb-social-box {
     display: flex;
     flex-wrap: wrap;
@@ -231,4 +218,65 @@
 	 outline: none;
 	 box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
 }
- 
+.pro_section{
+    width:115%; 
+}
+@media screen and (min-width: 90em) {
+    .onb-main {
+        width: 90em;
+        margin: 0 auto;
+   }
+}
+@media screen and (min-width: 84em)  {
+    .pro_section{
+        padding-top: 60px;
+        width: 200%;
+    }
+
+}
+
+@media screen and (min-width: 45em) and (max-width:58em){
+    .pro_section{
+        width: 200%;
+    }
+    .onb-aside-wrapper {
+        width: 50%;
+        float: right;
+   }
+   .onb-product-view--image-slider {
+    margin-left: 10px;
+    width: 40%;
+    float: left;
+}
+.onb-image-slider--image{
+    margin-top: 20px;
+    aspect-ratio: 200/300;
+}
+}
+@media screen and (min-width: 58em) {
+    .pro_section{
+        width: 165%;
+    }
+    .onb-aside-wrapper {
+        width: 60%;
+        float: right;
+   }
+   .onb-product-view--image-slider {
+    width: 40%;
+    float: left;
+}
+.onb-image-slider--image{
+    margin-top: 20px;
+    aspect-ratio: 200/240;
+}
+}
+@media screen and (min-width: 20em) and (max-width: 45em) {
+
+.onb-image-slider--image{
+    margin-top: 20px;
+    max-width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    aspect-ratio: 200/185;
+}
+}

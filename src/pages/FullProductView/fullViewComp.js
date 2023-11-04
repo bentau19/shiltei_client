@@ -22,8 +22,8 @@ export const FullViewComp = ({setProductViewOpen,viewedProduct,setCart,setViewed
   },[viewedProduct])
 
   return (
-<>
-<div dir="rtl" className="rela-block section-nav" ref={ref}>
+<div dir="rtl">
+<div dir="rtl" className="rela-block section-nav">
       <h2 className="right" style={{right:"15px"}}>תצוגת מוצר</h2>
       <div className="rela-inline left close-button" style={{left:"15px"}} onClick={() => setProductViewOpen(false)}>
         <svg viewBox="0 0 30 30" className="button-svg">
@@ -32,12 +32,11 @@ export const FullViewComp = ({setProductViewOpen,viewedProduct,setCart,setViewed
         </svg>
       </div>
     </div>
-  <main className="onb-main">
+  <main  ref={ref} className="onb-main">
     <article className="onb-product-view">
       <section className="onb-product-view--image-slider onb-image-slider">
         <img
           alt="sign"
-          style={{ aspectRatio: "200/240"}}
           className="onb-image-slider--image"
           src={viewedProduct.picture}
         />
@@ -91,8 +90,8 @@ export const FullViewComp = ({setProductViewOpen,viewedProduct,setCart,setViewed
           </div>
 
         </section>
-        <section className="onb-product-view--social-box onb-social-box">
-        <div className="rela-block product-item-container">
+        <section className="pro_section">
+        <div className="proComp_contain_div rela-block product-item-container">
           {displayedProducts.map((item, index) => (
             <ProductComp key={index} info={item} view={()=>{setViewedProduct(item);ref.current?.scrollIntoView({ behavior: 'smooth' });}} />
           ))}
@@ -101,7 +100,7 @@ export const FullViewComp = ({setProductViewOpen,viewedProduct,setCart,setViewed
       </aside>
     </article>
   </main>
-</>
+</div>
 
   );
 };
