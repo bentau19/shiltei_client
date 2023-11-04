@@ -62,6 +62,34 @@ export const ProductLine=({id, i, setTotal, onRemove})=>{
 }
 
 
+const Menu=({setTotal,items,onRemove,setCartOpen,buttonChange})=>{
+  useEffect(()=>{setTotal(0);},[])
+  return <div className='cart-props-container'>
+  <div style={{textAlign:"center"}}>
+  <Icon className='cart-icon' icon="mdi:cart" width="35" hFlip={true} />
+  <h2 style={{ display: "inline-block" }}>עגלת קניות</h2>
+  <Icon className='exit-button'  width="32" onClick={() => setCartOpen(false)} icon="carbon:close-outline" /> 
+  </div>
+  {Array.isArray(items)&&items.length!==0&&<div className='product-lines-container' >
+  {Array.isArray(items) &&
+    items.map((id, i) => {
+      return (
+        <ProductLine
+          key={i}
+          i={i}
+          id={id}
+          setTotal={setTotal} // Pass setTotal to ItemLine
+          onRemove={onRemove}
+          idsLen={items.length}
+        />
+      );
+    })
+  }
+  </div>}
+  {buttonChange()}
+</div>
+}
+
 
 export const Cart =({cartOpen,items,setItems,setCartOpen})=>{
 
@@ -91,34 +119,16 @@ function onRemove(price,i) {
       }
     }
 
+
+    
+
+
     
     return<div className="cart-page" style={cartOpen ? {right:"0px",width:"320px"} : {right:"0px",width:"0" }}>
     {(
       <>
-        {cartOpen&&<div className='cart-props-container'>
-          <div style={{textAlign:"center"}}>
-          <Icon className='cart-icon' icon="mdi:cart" width="35" hFlip={true} />
-          <h2 style={{ display: "inline-block" }}>עגלת קניות</h2>
-          <Icon className='exit-button'  width="32" onClick={() => setCartOpen(false)} icon="carbon:close-outline" /> 
-          </div>
-          {Array.isArray(items)&&items.length!==0&&<div className='product-lines-container' >
-          {Array.isArray(items) &&
-            items.map((id, i) => {
-              return (
-                <ProductLine
-                  key={i}
-                  i={i}
-                  id={id}
-                  setTotal={setTotal} // Pass setTotal to ItemLine
-                  onRemove={onRemove}
-                  idsLen={items.length}
-                />
-              );
-            })
-          }
-          </div>}
-          {buttonChange()}
-        </div>}
+        {cartOpen&&<Menu setTotal={setTotal} items={items} onRemove={onRemove}
+        setCartOpen={setCartOpen} buttonChange={buttonChange}/>}
       </>
     )}
   </div>
