@@ -190,7 +190,7 @@
 
    @media (min-width: 350px) and (max-width: 450px) {
     .book-content{
-      right: 40px;
+      right: 30px;
       top: 35px;
     }
     .book-photo {
