@@ -2,17 +2,26 @@
   width: 300px; /* Adjust the width if needed */
   margin: 0 auto;
   padding: 15px 0; /* Equal padding on the top and bottom */
-  padding-left: 20px; /* Padding on the left */
-  padding-right: 33px; /* Padding on the right */
+  padding-left: 33px; /* Padding on the left */
+  padding-right: 20px; /* Padding on the right */
   background-color: transparent;
   border-radius: 5px;
   border-style: solid;
   border-width:0.5px;
   box-shadow: 4px 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-
+  margin-bottom:20px;
+  margin-top:-20px;
+  width:60%;
+  float:left;
 }
 
+@media screen and (max-width:749px) {
+  .contact-us-container {
+    width:80%;
+    float:none;
+  }
+}
 
 .contact-us-heading {
   font-size: 20px; /* Reduce font size */

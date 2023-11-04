@@ -81,15 +81,16 @@ const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
         </div>
         <h2>?יש לך שאלה</h2>
         </div>
-    {/* <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
-				width={"100%"} height="320"></iframe> */}
+
+    <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
+				width={"100%"} height="320"></iframe>
       </div>
     </div>
 
     <div className="rela-block footer">
     
       <div className="rela-block gutter-container inner-footer-container">
-      <NavLink className="logo" style={{padding:"10px"}} to="/managerLogin">MANAGEMENT</NavLink>
+      <NavLink className="logo" style={{visibility:"visible",padding:"10px"}} to="/managerLogin">MANAGEMENT</NavLink>
       </div>
     </div>
   </div> 

@@ -20,11 +20,11 @@ export const CardView =({product,viewProduct,color})=>{
             src={product.picture}
             alt=""
             className="book-photo"
-            style={{ aspectRatio: "160/240", overflow: "visible",zIndex:"1000",marginLeft:"25px",marginTop:"25px", width:"172px" }}
+            style={{ aspectRatio: "160/240", overflow: "visible",zIndex:"1000", width:"172px" }}
           />
     </div>
-    <div dir="rtl">
-    <div className="book-content" style={{display:"inline"}}>
+
+<div dir="rtl" className="book-content" style={{display:"inline"}}>
  <div className="book-title">{product.title}</div>
  <div className="book-author">{product.makat}</div>
  <div className="book-sum">
@@ -36,7 +36,6 @@ export const CardView =({product,viewProduct,color})=>{
  <div onClick={()=>viewProduct(product)} style={{color:color}}  className="book-see">
   <div className="button_text">תצוגה מקדימה</div>
   </div>
-</div>
 </div>
 </div>
 }

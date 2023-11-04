@@ -62,7 +62,7 @@ function ContactUs() {
 
   return (
     <>
-    <div dir='rtl' style={{marginBottom:"20px", marginTop:"-20px",width:"60%",float: "left"}} className="contact-us-container">
+    <div dir='rtl' className="contact-us-container">
       <form onSubmit={handleSubmit}>
         <div className="contact-us-form-group">
          

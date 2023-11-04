@@ -1,8 +1,8 @@
 .main2{
     background-color: antiquewhite;
     margin: auto;
-    width: 800px;
-    height:min 70%;
+    max-width: 800px;
+    max-height: 70%;
     border: 3px solid black;
     padding-bottom: 20px;
     margin-top: 4%;
@@ -39,8 +39,11 @@ div.cont2{
     transition: border-color 0.2s;
   }
   
+  .form__field:disabled{
+    border-color:greenyellow;
+  }
+
   .form__field::placeholder {
-    
     color: transparent;
   }
   
@@ -176,3 +179,16 @@ div.cont2{
   .toggleLabel:active:after {
     width: 40px;
   }
+
+  @media screen and (max-width:530px) and (min-width:300px) {
+    .button-29 {
+      padding-left: 100px;
+      padding-right: 100px;
+  }
+}
+@media screen and (max-width:300px) {
+  .button-29 {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+}

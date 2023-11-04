@@ -60,6 +60,7 @@ function ShipModel({handleSend,handleParentClose}) {
             <div className='main2'>
             <Icon  className='exit-button'  width="32" onClick={() => handleClose()} icon="carbon:close-outline" /> 
                 <h1 style={{ textDecoration: "underline"  }}>פרטים ומשלוח</h1>
+  <div style={{overflowY:"scroll",overflowX:"hidden",maxHeight:"400px"}}>
   <div dir="rtl">
     <h3 style={{display:"inline-block", paddingLeft:"15px",margin:"0"}}>איסוף עצמי - </h3> 
     <div style={{display:"inline-block"}}>
@@ -68,32 +69,32 @@ function ShipModel({handleSend,handleParentClose}) {
   </div>
   </div>
 <div className='cont2' dir="rtl">
-<div class="form__group field">
-    <input ref={houseRef} type="input" class="form__field" placeholder="דירה" />
-    <label for="name" class="form__label">דירה</label>
+<div className="form__group field">
+    <input ref={houseRef} type="input" className="form__field" placeholder="דירה" />
+    <label for="name" className="form__label">דירה</label>
 </div>
-<div class="form__group field">
-    <input ref={streetRef} type="input" class="form__field" placeholder="רחוב"/>
-    <label for="name" class="form__label">רחוב</label>
+<div className="form__group field">
+    <input ref={streetRef} type="input" className="form__field" placeholder="רחוב"/>
+    <label for="name" className="form__label">רחוב</label>
 </div>
-<div class="form__group field">
-    <input ref={cityRef} type="input" class="form__field" placeholder="עיר"/>
-    <label for="name" class="form__label">עיר</label>
+<div className="form__group field">
+    <input ref={cityRef} type="input" className="form__field" placeholder="עיר"/>
+    <label for="name" className="form__label">עיר</label>
 </div>
 </div>
 <div className='cont2' dir="rtl">
-<div class="form__group field" style={{maxWidth:"280px"}}>
-    <input ref={nameRef} type="input" class="form__field" placeholder="שם מלא" required=""/>
-    <label for="name" class="form__label">שם מלא</label>
+<div className="form__group field" style={{maxWidth:"280px"}}>
+    <input ref={nameRef} type="input" className="form__field" placeholder="שם מלא" required=""/>
+    <label for="name" className="form__label">שם מלא</label>
 </div>
 
-<div class="form__group field" dir='ltr' style={{maxWidth:"280px"}}>
-    <input ref={emailRef} type="input" class="form__field" placeholder="אימייל" required=""/>
-    <label for="name" class="form__label">אימייל</label>
+<div className="form__group field" dir='ltr' style={{maxWidth:"280px"}}>
+    <input ref={emailRef} type="input" className="form__field" placeholder="אימייל" required=""/>
+    <label for="name" className="form__label">אימייל</label>
 </div>
 </div>
-<button onClick={handleOpen} class="button-29" role="button">שלח</button>
-
+<button onClick={handleOpen} className="button-29" role="button">שלח</button>
+</div>
         </div>
     <Modal 
       open={open}

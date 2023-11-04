@@ -250,9 +250,10 @@
 }
 .onb-image-slider--image{
     margin-top: 20px;
-    aspect-ratio: 200/300;
+    aspect-ratio: 200/260;
 }
 }
+
 @media screen and (min-width: 58em) {
     .pro_section{
         width: 165%;
@@ -277,6 +278,6 @@
     max-width: 60%;
     margin-right: auto;
     margin-left: auto;
-    aspect-ratio: 200/185;
+    aspect-ratio: 200/200;
 }
 }

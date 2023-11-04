@@ -6,16 +6,13 @@ import { Cart } from "./Cart/cart";
 import { LeftBar } from "../pages/LeftBar/leftBar";
 export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
     const [cartOpen, setCartOpen] = useState(false);
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [searchInput] = useState("");
-
 
   
     return <div id="app">
       <LeftBar setMenuOpen={setMenuOpen}/>
     <div  className={`rela-block nav-bar ${menuOpen ? 'shifted' : ''}`}>
       <div className="rela-block gutter-container inner-nav-container">
-        <div className={`nav-flip top ${searchOpen ? 'active' : ''}`}>
+        <div className={`nav-flip top`}>
           <div className="abs-center logo link">שלטי הצפון</div>
           <div className={`left ui-icon menu-button ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
             <svg viewBox="0 0 40 50" className="button-svg">
@@ -34,16 +31,7 @@ export const NavBar=({setMenuOpen,menuOpen,items,setItems})=>{
           </div>
         </div>
         <img className="navbar_img" src={logo} alt="shiltei" height={"50px"}></img> 
-        {/* <div className="rela-block product-pic" style={{ 'background': `url(${info.picture}) center no-repeat` }}/> */}
-        {/* <div className={`nav-flip bottom ${searchOpen ? 'active' : ''}`}>
-          <input value={searchInput} onChange={()=>{}} type="text" placeholder="Search here..." className="search-bar" />
-        </div>
-        <div className="vert-center ui-icon search-button" onClick={() => setSearchOpen(!searchOpen)}>
-          <svg viewBox="0 0 50 50" className="button-svg">
-            <circle cx={20} cy={22} r={12} />
-            <path d="M 31 32 L 39 40" />
-          </svg>
-        </div> */}
+
       </div>
     </div>
     <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} items={items} setItems={setItems}/>
