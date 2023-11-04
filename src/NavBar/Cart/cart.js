@@ -91,7 +91,7 @@ function onRemove(price,i) {
       }
     }
 
-    return<div className="cart-page" style={cartOpen ? {right:"0px"} : {right:"-400px " }}>
+    return<div className="cart-page" style={cartOpen ? {right:"0px",width:"320px"} : {right:"-400px " }}>
     {(
       <>
         <div className='cart-props-container'>

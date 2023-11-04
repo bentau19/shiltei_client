@@ -6,7 +6,7 @@
     min-height: 530px;
     background-color: #e6e6e6;
     text-align: right;
-    width: 400px;
+    width: 0px;
     border: 0.5px solid;
    } 
 
@@ -54,7 +54,7 @@
 
 .product-comment{
   resize:none;
-  width:250px; 
+  width:150px; 
   height: 22px; 
   font-size: 15px; 
 }
@@ -95,7 +95,7 @@
   .send_button {
     color: #090909;
     margin-top: 5px;
-    padding: 0.35em 6em;
+    padding: 0.35em 5em;
     font-size: 18px;
     border-radius: 0.5em;
     background: #e8e8e8;
