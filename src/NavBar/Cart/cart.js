@@ -92,10 +92,10 @@ function onRemove(price,i) {
     }
 
     
-    return<div className="cart-page" style={cartOpen ? {right:"0px",width:"320px"} : {right:"0px",zIndex:"-10" }}>
+    return<div className="cart-page" style={cartOpen ? {right:"0px",width:"320px"} : {right:"0px",width:"0" }}>
     {(
       <>
-        <div className='cart-props-container'>
+        {cartOpen&&<div className='cart-props-container'>
           <div style={{textAlign:"center"}}>
           <Icon className='cart-icon' icon="mdi:cart" width="35" hFlip={true} />
           <h2 style={{ display: "inline-block" }}>עגלת קניות</h2>
@@ -118,7 +118,7 @@ function onRemove(price,i) {
           }
           </div>}
           {buttonChange()}
-        </div>
+        </div>}
       </>
     )}
   </div>
