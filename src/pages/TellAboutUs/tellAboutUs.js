@@ -13,8 +13,7 @@ const AdviceImg=()=>{
   return <div className="advice-img">
     <img src="https://www.w3schools.com/howto/img_avatar.png" alt="ing"/>
       </div>
-}
-
+      }
 const AdviceName = ({name})=>{
   return <div className="advice-name">
     <h1>{name}</h1>

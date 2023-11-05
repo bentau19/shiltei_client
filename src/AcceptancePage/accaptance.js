@@ -14,9 +14,8 @@ function Accaptance() {
     const [order,setOrder]= useState("");
     const [items,setItems]= useState([]);
     useEffect(() => {
-      toggleNavigationBar("client");
+      toggleNavigationBar("acceptence");
         Axios.post(getServerId()+"/sell-search", { params: { _id: id,tradeNum:parseInt(tradeNumber) } }).then((res)=>{
-            console.log(res.data[0])
             getItems(res.data[0]);
             setOrder(res.data[0])
 
@@ -40,54 +39,51 @@ function Accaptance() {
       };
   
     return (
-        order!==""?<div className={`${styles.mainContainer}`}>
-        <h1 style={{ textDecoration: "underline" }}>Acceptance</h1>
-        <h3 className={`${styles.subtitle}`}>items</h3>
+        order!==""?<div dir="rtl" className={`${styles.mainContainer}`}
+        style={{marginLeft:"auto",marginRight:"auto"}}>
+        <h1 style={{ textDecoration: "underline" }}>קבלה</h1>
+        <h3 className={`${styles.subtitle}`} style={{margin:"5px"}}>מוצרים</h3>
         <div className={`${styles.scrollable}`}>
         <table className={`${styles.fixed_headers}`}>
-          <thead style={{ height: "40px" }}>
-            <tr style={{ color:"white", height: "40px" }}>
-              <th>title</th>
-              <th>price</th>
-              <th>makat</th>
-              <th>size</th>
-            </tr>
-          </thead>
-          <tbody className='tbodyClass'>
-          {items.map((item, i) => (
-            <tr key={i}>
-            <td>{item.title}</td>
-            <td>{item.price}</td>
-            <td>{item.makat}</td>
-            <td>{item.size}</td>
+        <thead style={{ height: "40px" }}>
+          <tr style={{ color:"white", height: "40px" }}>
+            <th>מוצר</th>
+            <th>מחיר</th>
+            <th>מק"ט</th>
+            <th>מידה</th>
+            <th>תוכן</th>
+            <th>הערות</th>
           </tr>
-              ))}
-          </tbody>
-        </table>
-        
+        </thead>
+        <tbody className='tbodyClass'>
+        {items.map((item, i) => (
+          <tr key={i}>
+          <td>{item.title}</td>
+          <td>{item.price}</td>
+          <td>{item.makat}</td>
+          <td>{item.size}</td>
+          <td>{order.items[i].content}</td>
+          <td>{order.items[i].comment}</td>
+        </tr>
+            ))}
+        </tbody>
+      </table>
+       
         </div>
-        <p style={{textAlign:"left",paddingLeft:"100px", fontSize:"24px"}}>TotalPrice:{order.totalPrice}</p>
+        <p style={{margin:"10px", fontSize:"24px"}}>מחיר סופי:{order.totalPrice}</p>
   
-        <h3 className={`${styles.subtitle}`}>SHIP</h3>
-              {order.ship?<h3><mark>HOUSE</mark>: {order.ship.house} , <mark>STREET</mark>:{order.ship.street} , <mark>CITY</mark>:{order.ship.city}</h3>:<h3>Own Take</h3>}
-              <h3><mark>NAME</mark>: {order.name}, <mark>EMAIL</mark>:{order.email}</h3>
-              <h3><mark>Trade Number</mark>: {order.tradeNum}</h3>
-        <h3 className={`${styles.subtitle}`}>STAGE</h3>
+        <h3 style={{margin:"15px"}} className={`${styles.subtitle}`}>משלוח</h3>
+              {order.ship?<h3><mark>בית</mark>: {order.ship.house} , <mark>רחוב</mark>:{order.ship.street} , <mark>עיר</mark>:{order.ship.city}</h3>:<h3>לקיחה מהחנות</h3>}
+              <h3><mark>שם מלא</mark>: {order.name}, <mark>אימייל</mark>:{order.email}</h3>
+              <h3><mark>מספר עסקה</mark>: {order.tradeNum}</h3>
+        <h3 className={`${styles.subtitle}`}>מצב הזמנה</h3>
         <div className='cont2'>
-        <div style={{ verticalAlign: 'middle' }}>
+        <div style={{ verticalAlign: 'middle', marginTop:"0",margin:"10px"}}>
       <span   >{stage[order.stage-1]}</span>
     </div>
       <h3>{order.stage}/6</h3>
-  
         </div>
       </div>:<div/>
-        // <div  id="mainDiv" style={{textAlign:"center", height:"400px"}}>
-        // <h1 style={{color:"yellow"}}>{product?.newPro}</h1>
-        // <h1 style={{ padding:"10px",textDecoration:"underline"}}>{product?.title}</h1>
-        // <h2 >{product?.picture}</h2>
-        // <h2 >{product?.price}$</h2>
-        // <p>{product?.makat}-מק"ט</p>
-        // <button >add to cart!</button></div>
     )
 }
 

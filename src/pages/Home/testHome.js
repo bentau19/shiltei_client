@@ -53,7 +53,7 @@ const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
     <div className="rela-block page-section new-section">
       <div className="rela-block gutter-container">
         <div className="rela-block section-nav">
-          <h2 id='contact' className="right">צור קשר</h2>
+          <h2 id='contact' className="right">?יש לך שאלה</h2>
         </div>
         <ContactUs />
         <div className="right-column">
@@ -79,7 +79,7 @@ const App2=({reviews,menuOpen,items,highlights,setCart,ctags})=> {
           <a  href = "mailto: shlatimafula@gmail.com">shlatimafula@gmail.com</a>
           <a color='black'href = "mailto: shlatimafula@gmail.com"><Icon icon="simple-icons:gmail" width="30" /></a>
         </div>
-        <h2>?יש לך שאלה</h2>
+        <h2>צור קשר</h2>
         </div>
 
     <iframe  src="https://embed.waze.com/iframe?zoom=16&lat=32.607117&lon=35.293713&ct=livemap&pin=1" 
