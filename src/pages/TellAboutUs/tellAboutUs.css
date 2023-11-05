@@ -33,22 +33,25 @@
   margin-top: 50px;
   padding: 10px;
   padding-top:60px;
-  width: 50%;
-  width: 600px;  
+  width: 100%;
+  max-width: 600px;  
   height: 300px;
   border: 1px solid black;
   background-color: rgb(228, 235, 245,0.7);
 }
+
 .advice-name h1{
   font-size: 35px;
 }
 .advice-name{
   margin: 30px;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .advice-content{
   font-size: 30px;
+  
 }
 
 .advice-rating{
@@ -56,7 +59,17 @@
   justify-content: center;
 }
 
-
+@media screen and (max-width:550px) {
+  .advice-name h1{
+    font-size: 25px;
+  }
+  .advice-content{
+    font-size: 12px;
+  }
+  .advice-rating{
+    transform: translateY(0) scale(0.5, 0.5);
+  }
+}
 /* :root {
   --body-bg-color: #e5f4f9;
   --body-color-light: #8b939c;
@@ -90,12 +103,13 @@
   position: relative;
 }
 
+
 .rating__star {
   display: block;
   overflow: visible;
   pointer-events: none;
-  width: 3em;
-  height: 3em;
+  width: 4em;
+  height: 4em;
 }
 
 .rating__star-body {
@@ -152,7 +166,7 @@
   display: inline-flex;
 
   font-family: Inter,sans-serif;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   height: 48px;
   justify-content: center;
