@@ -29,8 +29,15 @@ export const FullViewMaker=(items,order,setOrder,pass)=>{
 
       console.error("Error deleting product:", error);
     });
-    
-    }
+    if(order.stage>1){
+    Axios.post(getServerId() + "/send-update", {  _id:order._id,tradeNum:order.tradeNum
+  ,secretKey:"itIsMe!",name:order.name,email:order.email,stage:stage[order.stage]}).then((res)=>{
+        if (res.status===200){
+        }else{  
+      }
+      })
+    }}
+
   }
   const decreaseStage = () => {
     if (order.stage > 1) {

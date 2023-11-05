@@ -36,6 +36,7 @@ function App(){
             <Route path="/managerHome" element={<ManagerHome/>} />
             <Route path="/managerSells" element={<SellScreen/>} />
             <Route path="/accaptance/:id/:tradeNumber" element={<Accaptance />} />
+            <Route path="/:asd" element={<LoadingPage menuOpen={menuOpen} setLoading={setLoading} setCart={setItems} />} />
           </Routes>
           </BrowserRouter>
           </NavigationProvider>

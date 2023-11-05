@@ -37,7 +37,11 @@ function Accaptance() {
           console.log(e);
         }
       };
-  
+      const getTime=()=>{
+        let array= order.updatedAt.split('T')
+      return<div >{array[0]}<br/>
+      {array[1].split('.')[0]}</div>
+    }
     return (
         order!==""?<div dir="rtl" className={`${styles.mainContainer}`}
         style={{marginLeft:"auto",marginRight:"auto"}}>
@@ -82,7 +86,9 @@ function Accaptance() {
       <span   >{stage[order.stage-1]}</span>
     </div>
       <h3>{order.stage}/6</h3>
+      עודכן ב-{getTime()}
         </div>
+       
       </div>:<div/>
     )
 }

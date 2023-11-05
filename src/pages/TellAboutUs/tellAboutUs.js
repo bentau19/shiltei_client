@@ -8,6 +8,8 @@ import { Pagination, Navigation,Autoplay } from "swiper/modules";
 import {  useRef, useState } from 'react';
 import { Stars } from "./rateModal";
 import Axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
 import { getServerId } from "../../localStorage";
 const AdviceImg=()=>{
   return <div className="advice-img">
@@ -77,6 +79,26 @@ export const CardView =({review})=>{
 }
 
 export const TellAboutUS=({reviews})=>{
+  const success_notify = (message) =>toast.success(message, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });;
+    const error_notify=(message)=>toast.error(message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   const [Rate,setRate]=useState(0);
   const [isOpen,setIsOpen]=useState(false);
   const nameRef = useRef();
@@ -88,9 +110,10 @@ export const TellAboutUS=({reviews})=>{
       console.log("rate - "+Rate)
       setIsOpen(!isOpen)
       const response = await Axios.post(getServerId() + "/send-review",{ name:nameRef.current.value, content:contentRef.current.value,rate:Rate});
+      success_notify("נשלח בהצלחה!!")
       console.log(response.data);
     }else{
-      console.log("error");
+      error_notify("נא מלא את כל השדות")
     }
 
   }
@@ -137,6 +160,31 @@ export const TellAboutUS=({reviews})=>{
           <button onClick={()=>{handleSend()}} style={{margin:"20px"}} class="button-58" role="button">הוסף ביקורת</button>     
           </div>}
           </div>
+          <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+/>
+  <ToastContainer
+  position="bottom-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+  />
+  
         </>
       );
 }

@@ -4,8 +4,29 @@ import Modal from '@mui/material/Modal';
 import './shipingScreen.css'
 
 import { Icon } from '@iconify/react';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ShipModel({handleSend,handleParentClose}) {
+  const success_notify = (message) =>toast.success(message, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });;
+    const error_notify=(message)=>toast.error(message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
     const [open, setOpen] = useState(false);
     const [checked, setChecked] = useState(false);
     const houseRef=useRef("");
@@ -26,7 +47,7 @@ function ShipModel({handleSend,handleParentClose}) {
         return ship
       } else {
         if(checked==false){
-          alert("מלא את פרטי המשלוח כנדרש");
+          error_notify("נא מלא את כל השדות")
           return "error"
         }
         return "e"
@@ -45,13 +66,14 @@ function ShipModel({handleSend,handleParentClose}) {
     }
     
     const handleOpen =async () =>{
+      
       if(nameRef.current.value!==""&&emailRef.current.value!==""){
       if(createShip()!=="error"){
       handleSend(createShip(),nameRef.current.value,emailRef.current.value);
-      alert("נשלח בהצלחה!!!")  
+      success_notify("נשלח בהצלחה!!")
     }}
       else
-      alert("מלא את השם ואת האימייל כהלכה")
+      error_notify("נא מלא את כל השדות")
     };
     
     const handleClose = () =>{
@@ -103,7 +125,33 @@ function ShipModel({handleSend,handleParentClose}) {
      <div>
       {/* <CreditCardView ship={ship} name={nameRef.current.value} email={emailRef.current.value} onCloseFunc={handleSend} /> */}
       </div> 
-    </Modal></div>
+    </Modal>
+    <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+/>
+  <ToastContainer
+  position="bottom-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="light"
+  />
+    </div>
+    
 }
 
 export default ShipModel;

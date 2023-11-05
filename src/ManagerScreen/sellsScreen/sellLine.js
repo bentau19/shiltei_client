@@ -30,8 +30,6 @@ export const SellLine=({order,setFItems,i,setOrder,chosen,setChosenId})=>{
 
     const getTime=()=>{
         let array= order.createdAt.split('T')
-
-
       return<td className={tdClass}>{array[0]} <br/> Time:{array[1].split('.')[0]}</td>
     }
 
