@@ -45,3 +45,16 @@
   .category.active {
     color: #333;
   }
+
+  @media screen and (max-width:470px) {
+    .dynamic{
+      display: block;
+      position: absolute;
+      
+      top:0;
+      font-size: 20px;
+    }
+    .search-bar1 input{
+      font-size: 20px;
+    }
+  }

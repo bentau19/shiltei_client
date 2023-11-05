@@ -16,7 +16,7 @@ const ProductsNav =({tags, currenttags,setCurrenttags,addDisplayedProducts})=>{
   }
 
     return <><div dir='rtl' className="Row">
-    <h2 style={{width:"0"}} className="Column">מוצרים<span>{currenttags !== 'הכל' ? `/${currenttags}` : ''}</span></h2>
+    <h2 style={{width:"0"}} className="Column dynamic">מוצרים<span>{currenttags !== 'הכל' ? `/${currenttags}` : ''}</span></h2>
     <div className="Column search-bar1">
     <input type="text" dir="rtl" placeholder="חפש שלט" onChange={(data)=>{addDisplayedProducts({title:data.target.value,tag:currenttags,reset:true});}}/>
   </div>
